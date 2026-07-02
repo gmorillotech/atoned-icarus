@@ -31,7 +31,7 @@ The game shifts perspective as an intentional mechanic: a 2D top-down view while
  
 ## Getting Started
  
-1. **Install Unity**: use version `[6000.5.1f1]` (Unity 6.5). Everyone should be on the same version to avoid asset re-serialization conflicts.
+1. **Install Unity**: use version `[6000.3.19f1]` (Unity 6.3 LTS). Everyone should be on the same version to avoid asset re-serialization conflicts.
 2. **Clone the repo:**
 ```bash
    git clone https://github.com/[username]/atoned-icarus.git
