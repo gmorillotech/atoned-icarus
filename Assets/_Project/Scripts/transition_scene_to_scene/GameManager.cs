@@ -46,15 +46,24 @@ void HandlePlayerTransition()
 
     foreach (var doc in players)
     {
-        if (doc.gameObject.scene.name == "DontDestroyOnLoad")
+        if (!doc.gameObject.scene.IsValid() || doc.gameObject.scene.buildIndex == -1)
             travelingDoctor = doc;
         else
             localCloneDoctor = doc;
     }
 
-    if (travelingDoctor != null && localCloneDoctor != null)
+    if (travelingDoctor == null && localCloneDoctor != null)
     {
-        travelingDoctor.transform.position = localCloneDoctor.transform.position;
+        travelingDoctor = localCloneDoctor;
+        localCloneDoctor = null; 
+    }
+
+    if (travelingDoctor != null)
+    {
+        if (localCloneDoctor != null)
+        {
+            travelingDoctor.transform.position = localCloneDoctor.transform.position;
+        }
 
         Rigidbody travelingRb = travelingDoctor.GetComponent<Rigidbody>();
         if (travelingRb != null)
@@ -63,8 +72,11 @@ void HandlePlayerTransition()
             travelingRb.angularVelocity = Vector3.zero;
         }
 
-        // Trigger the movement update using the SceneManager logic
-        travelingDoctor.DetermineMovementMode();
+        // 1. Find the configuration object in the newly loaded scene
+        var sceneConfig = Object.FindFirstObjectByType<SceneConfiguration>();
+
+        // 2. Pass it directly to the player
+        travelingDoctor.DetermineMovementMode(sceneConfig);
 
         // --- CAMERA CONTROLLER STAGE ---
         var cmCam = Object.FindFirstObjectByType<Unity.Cinemachine.CinemachineCamera>();
@@ -72,33 +84,43 @@ void HandlePlayerTransition()
         {
             cmCam.Follow = travelingDoctor.transform;
 
-            // Check if the loaded scene is a side scroller
-            string activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.ToLower();
-            if (activeScene.Contains("side") || activeScene.Contains("scroller") || activeScene.Contains("vent") || activeScene.Contains("shaft"))
+            if (sceneConfig != null && sceneConfig.LevelType == LevelType.SideScroller)
             {
-                // FIX: Use a dynamic property approach to adjust Damping so Unity 6 doesn't reject the type name
-                // This tells the camera to become infinitely "lazy" tracking left-to-right, effectively locking it!
-                System.Type camType = cmCam.GetType();
-                var positionProperty = camType.GetProperty("PositionControl") ?? camType.GetProperty("FollowControl");
-                
-                if (positionProperty != null)
+                bool componentFound = false;
+
+                var positionComposer = cmCam.GetComponent<Unity.Cinemachine.CinemachinePositionComposer>();
+                if (positionComposer != null)
                 {
-                    var componentInstance = positionProperty.GetValue(cmCam);
-                    if (componentInstance != null)
+                    positionComposer.Damping = new Vector3(99999f, 1f, 1f);
+                    componentFound = true;
+                }
+                
+                if (!componentFound)
+                {
+                    var followComponent = cmCam.GetComponent<Unity.Cinemachine.CinemachineFollow>();
+                    if (followComponent != null)
                     {
-                        var dampingField = componentInstance.GetType().GetField("Damping") ?? componentInstance.GetType().GetField("m_Damping");
-                        if (dampingField != null)
-                        {
-                            // Set X damping to massive (index 0) and keep Y damping responsive (index 1)
-                            dampingField.SetValue(componentInstance, new Vector3(99999f, 1f, 1f));
-                        }
+                        followComponent.TrackerSettings.PositionDamping = new Vector3(99999f, 1f, 1f);
+                        componentFound = true;
                     }
+                }
+
+                if (!componentFound)
+                {
+                    Debug.LogWarning($"[GameManager] HandlePlayerTransition: Found CinemachineCamera, but it missing expected components.");
                 }
             }
         }
+        else
+        {
+            Debug.LogWarning("[GameManager] HandlePlayerTransition: Could not find a Unity.Cinemachine.CinemachineCamera in the scene!");
+        }
 
-        Destroy(localCloneDoctor.gameObject);
-    }
+        if (localCloneDoctor != null)
+        {
+            Destroy(localCloneDoctor.gameObject);
+        }
+    } 
 }
 
     void InitialCameraSetup()
