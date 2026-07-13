@@ -14,15 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Floors/Elevator_Shaft(Side_Scroller_1).unity
     guid: 8a1c674d982fff24aadfd76c873fcf78
-  - enabled: 0
-    path: Assets/_Project/Scenes/Floors/Level2(Chaser_Room).unity
-    guid: 211dc9a141f9aca42b14b5955ca9e867
   - enabled: 1
     path: Assets/_Project/Scenes/Floors/AC_Vents(Side_Scroller_2).unity
     guid: 168b83e50b432164c985a026ba715fe8
-  - enabled: 0
-    path: Assets/_Project/Scenes/Floors/Level3(Military-ShootingRange_Room).unity
-    guid: 4bbe97cb773b2574497ff10703d83504
   - enabled: 1
     path: Assets/_Project/Scenes/Floors/Level2(Chaser_Room)NEW.unity
     guid: b45d63f628593b54e8eaa91b3df5f38a
