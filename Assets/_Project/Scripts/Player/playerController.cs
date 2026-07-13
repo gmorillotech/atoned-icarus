@@ -15,6 +15,23 @@ public class PlayerController : MonoBehaviour
     [Header("Current State")]
     public MovementMode currentMode;
 
+    // --- PUBLIC API FOR ISABELLA'S COMPONENTS ---
+
+    /// <summary>
+    /// Exposes the player's current raw movement input vector for stealth/direction checking.
+    /// </summary>
+    public Vector3 MoveInput => moveInput;
+
+    /// <summary>
+    /// Exposes the current movement speed value.
+    /// </summary>
+    public float CurrentSpeed => currentSpeed;
+
+    /// <summary>
+    /// Exposes whether the player is currently actively moving.
+    /// </summary>
+    public bool IsMoving => moveInput != Vector3.zero;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
