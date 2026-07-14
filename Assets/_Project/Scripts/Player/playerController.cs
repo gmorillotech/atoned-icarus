@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
     private Vector3 moveInput;
 
+    private bool isSneaking;
+    private Vector3 facingDirection;
+
+    public bool IsSneaking => isSneaking;
+    public Vector3 FacingDirection => facingDirection;
+
     public enum MovementMode { TopDown, SideScroller }
     [Header("Current State")]
     public MovementMode currentMode;
