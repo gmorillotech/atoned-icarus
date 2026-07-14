@@ -84,14 +84,18 @@ void HandlePlayerTransition()
         {
             cmCam.Follow = travelingDoctor.transform;
 
-            if (sceneConfig != null && sceneConfig.LevelType == LevelType.SideScroller)
+           if (sceneConfig != null && sceneConfig.LevelType == LevelType.SideScroller)
             {
                 bool componentFound = false;
+
+                // Use a reasonable damping speed (X: 1f, Y: 1f, Z: 1f) 
+                // Lower numbers = camera catches up faster.
+                Vector3 sideScrollDamping = new Vector3(1f, 1f, 1f); 
 
                 var positionComposer = cmCam.GetComponent<Unity.Cinemachine.CinemachinePositionComposer>();
                 if (positionComposer != null)
                 {
-                    positionComposer.Damping = new Vector3(99999f, 1f, 1f);
+                    positionComposer.Damping = sideScrollDamping;
                     componentFound = true;
                 }
                 
@@ -100,14 +104,14 @@ void HandlePlayerTransition()
                     var followComponent = cmCam.GetComponent<Unity.Cinemachine.CinemachineFollow>();
                     if (followComponent != null)
                     {
-                        followComponent.TrackerSettings.PositionDamping = new Vector3(99999f, 1f, 1f);
+                        followComponent.TrackerSettings.PositionDamping = sideScrollDamping;
                         componentFound = true;
                     }
                 }
 
                 if (!componentFound)
                 {
-                    Debug.LogWarning($"[GameManager] HandlePlayerTransition: Found CinemachineCamera, but it missing expected components.");
+                    Debug.LogWarning($"[GameManager] HandlePlayerTransition: Found CinemachineCamera, but it is missing expected components.");
                 }
             }
         }
