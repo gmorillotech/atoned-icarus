@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
+        isSneaking = Input.GetButton("Fire3");
+
         if (currentMode == MovementMode.TopDown)
         {
             moveInput = new Vector3(moveX, 0f, moveZ).normalized;
@@ -61,6 +63,8 @@ public class PlayerController : MonoBehaviour
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, JUMP_FORCE, 0f);
             }
         }
+
+        facingDirection = transform.forward;
     }
 
     void FixedUpdate()
