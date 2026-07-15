@@ -3,9 +3,14 @@ using UnityEngine;
 public class TaserPickup : MonoBehaviour
 {
     private bool playerNearby = false;
+    private bool isPickedUp = false;
 
     private void OnTriggerEnter(Collider other)
     {
+
+        if (isPickedUp)
+            return;
+
         if (other.CompareTag("Player"))
         {
             playerNearby = true;
@@ -31,8 +36,10 @@ public class TaserPickup : MonoBehaviour
             inventory.PickupTaser(GetComponent<Taser>());
 
             Debug.Log("Taser picked up!");
+            isPickedUp = true;
 
-            GetComponentInChildren<Renderer>().enabled = false;
+            //GetComponentInChildren<Renderer>().enabled = false;
+            gameObject.SetActive(false);
         }
     }
 }

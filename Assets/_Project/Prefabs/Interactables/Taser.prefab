@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -4439912117111811257}
   - component: {fileID: -4968224182839970719}
   - component: {fileID: 8871341650690289196}
+  - component: {fileID: 8358860494918290043}
   m_Layer: 0
   m_Name: Taser
   m_TagString: Untagged
@@ -89,6 +90,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3358e32ad19f4448a2d3af1e9ce153a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaserPickup
+--- !u!114 &8358860494918290043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110117271308844746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dce251934d2649458aabe2c8014e99d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Taser
+  stunRange: 5
 --- !u!1 &5013653268483462275
 GameObject:
   m_ObjectHideFlags: 0
