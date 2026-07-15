@@ -4,22 +4,6 @@ public class TaserPickup : MonoBehaviour
 {
     private bool playerNearby = false;
 
-    void Update()
-    {
-        if (playerNearby && Input.GetKeyDown(KeyCode.E))
-        {
-            Pickup();
-        }
-    }
-
-    private void Pickup()
-    {
-        Debug.Log("Taser picked up!");
-
-        // Later: add to inventory
-        Destroy(gameObject);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -34,6 +18,21 @@ public class TaserPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = false;
+        }
+    }
+
+    void Update()
+    {
+        if (playerNearby && Input.GetKeyDown(KeyCode.E))
+        {
+            PlayerInventory inventory =
+                FindFirstObjectByType<PlayerInventory>();
+
+            inventory.PickupTaser(GetComponent<Taser>());
+
+            Debug.Log("Taser picked up!");
+
+            GetComponentInChildren<Renderer>().enabled = false;
         }
     }
 }
