@@ -84,7 +84,7 @@ void HandlePlayerTransition()
         {
             cmCam.Follow = travelingDoctor.transform;
 
-           if (sceneConfig != null && sceneConfig.LevelType == LevelType.SideScroller)
+            if (sceneConfig != null && sceneConfig.LevelType == LevelType.SideScroller)
             {
                 bool componentFound = false;
 
