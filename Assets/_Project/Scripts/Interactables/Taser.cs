@@ -4,6 +4,7 @@ public class Taser : MonoBehaviour
 {
     [SerializeField] private float stunRange = 5f;
     [SerializeField] private float stunAngle = 45f;
+    [SerializeField] private LayerMask enemyLayer;
 
     private Transform playerTransform;
 
@@ -26,11 +27,16 @@ public class Taser : MonoBehaviour
 
         Collider[] objectsInRange = Physics.OverlapSphere(
             playerTransform.position,
-            stunRange
+            stunRange,
+            enemyLayer
         );
 
         foreach (Collider obj in objectsInRange)
         {
+
+            if (obj.transform == playerTransform)
+                continue;
+
             Vector3 directionToTarget =
                 (obj.transform.position - playerTransform.position).normalized;
 

@@ -38,7 +38,6 @@ public class TaserPickup : MonoBehaviour
             Debug.Log("Taser picked up!");
             isPickedUp = true;
 
-            //GetComponentInChildren<Renderer>().enabled = false;
             gameObject.SetActive(false);
         }
     }
