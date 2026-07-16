@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
             if (rb != null)
             {
-                rb.constraints = RigidbodyConstraints.FreezeRotation; 
+                rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY; 
                 
                 // George's Requirement: Turn off gravity and zero out vertical velocity for Top-Down
                 rb.useGravity = false;
