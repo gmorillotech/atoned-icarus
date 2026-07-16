@@ -21,13 +21,13 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Floors/Level2(Chaser_Room)NEW.unity
     guid: b45d63f628593b54e8eaa91b3df5f38a
   - enabled: 1
-    path: Assets/_Project/Scenes/Floors/Level3(Military_ShootingRange_Room)NEW.unity
+    path: Assets/_Project/Scenes/Floors/Level2(Military_ShootingRange_Room).unity
     guid: 1c7cdea56535f954db4ac6176066c59b
   - enabled: 1
-    path: Assets/_Project/Scenes/Floors/Level4(ICARUS_Room).unity
+    path: Assets/_Project/Scenes/Floors/Level3(ICARUS_Room).unity
     guid: 28d1e9bdcadd6284193771f0136f8c67
   - enabled: 1
-    path: Assets/_Project/Scenes/Floors/Water_Pipelines(Side_Scroller_3).unity
+    path: Assets/_Project/Scenes/Floors/Pipelines(Side_Scroller_2).unity
     guid: d4ac1776b4aa4b94a8533ea58693766a
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
