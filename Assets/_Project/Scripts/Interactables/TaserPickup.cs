@@ -28,6 +28,7 @@ public class TaserPickup : MonoBehaviour
 
     void Update()
     {
+
         if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
             PlayerInventory inventory =
