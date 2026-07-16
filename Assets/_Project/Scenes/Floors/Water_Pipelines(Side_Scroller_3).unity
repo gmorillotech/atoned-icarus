@@ -552,7 +552,7 @@ Transform:
   m_GameObject: {fileID: 218909687}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.06, y: -2.82, z: -0}
+  m_LocalPosition: {x: 10.17, y: -10.69, z: 0.45}
   m_LocalScale: {x: 1.4125001, y: 1.275, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -577,8 +577,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4089891, y: 1, z: 0}
-  m_Center: {x: 0.29550546, y: 0, z: 0}
+  m_Size: {x: 0.6220512, y: 0.8096989, z: 0.91704303}
+  m_Center: {x: 0.4020365, y: -0.09515061, z: -0.45852152}
 --- !u!1 &248967873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,7 +2719,6 @@ GameObject:
   - component: {fileID: 1387559281}
   - component: {fileID: 1387559280}
   - component: {fileID: 1387559279}
-  - component: {fileID: 1387559283}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2820,19 +2819,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1387559283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387559278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8956ff662b9223641b47d982e7b0c00c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneSwapper
-  sceneName: Level4(ICARUS_Room)
 --- !u!1 &1417433421
 GameObject:
   m_ObjectHideFlags: 0
