@@ -1198,7 +1198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8956ff662b9223641b47d982e7b0c00c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneSwapper
-  sceneName: Level2(Chaser_Room)NEW
+  sceneName: Level3(Military_ShootingRange_Room)NEW
 --- !u!4 &218909690
 Transform:
   m_ObjectHideFlags: 0
