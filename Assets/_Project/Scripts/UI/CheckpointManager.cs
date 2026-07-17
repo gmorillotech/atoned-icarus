@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckpointManager : MonoBehaviour
 {
@@ -20,6 +21,22 @@ public class CheckpointManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Checkpoints don't carry over between levels
+        hasCheckpointSaved = false;
     }
 
     // Call this when the player touches a checkpoint
