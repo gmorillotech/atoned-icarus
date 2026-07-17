@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/_Project/Scenes/Menus/MainMenu.unity
+    guid: 301372a1de1208e43bbb8d92c1e32e98
   - enabled: 1
     path: Assets/_Project/Scenes/Floors/Level1(Drone).unity
     guid: c3da45f0c15850741b8c3fa9e5f3e805
@@ -15,19 +15,13 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Floors/Elevator_Shaft(Side_Scroller_1).unity
     guid: 8a1c674d982fff24aadfd76c873fcf78
   - enabled: 1
-    path: Assets/_Project/Scenes/Floors/AC_Vents(Side_Scroller_2).unity
-    guid: 168b83e50b432164c985a026ba715fe8
-  - enabled: 1
-    path: Assets/_Project/Scenes/Floors/Level2(Chaser_Room)NEW.unity
-    guid: b45d63f628593b54e8eaa91b3df5f38a
-  - enabled: 1
-    path: Assets/_Project/Scenes/Floors/Level3(Military_ShootingRange_Room)NEW.unity
+    path: Assets/_Project/Scenes/Floors/Level2(Military_ShootingRange_Room).unity
     guid: 1c7cdea56535f954db4ac6176066c59b
   - enabled: 1
-    path: Assets/_Project/Scenes/Floors/Level4(ICARUS_Room).unity
+    path: Assets/_Project/Scenes/Floors/Level3(ICARUS_Room).unity
     guid: 28d1e9bdcadd6284193771f0136f8c67
   - enabled: 1
-    path: Assets/_Project/Scenes/Floors/Water_Pipelines(Side_Scroller_3).unity
+    path: Assets/_Project/Scenes/Floors/Pipelines(Side_Scroller_2).unity
     guid: d4ac1776b4aa4b94a8533ea58693766a
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
