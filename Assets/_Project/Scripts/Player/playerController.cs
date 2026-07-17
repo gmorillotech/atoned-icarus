@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     
     private Rigidbody rb;
     private float currentSpeed;
+    private Animator animator;
     private Vector3 moveInput;
 
     private bool isSneaking;
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+
         currentSpeed = BASE_SPEED;
         
         // Initial setup on start
@@ -36,11 +39,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveZ = Input.GetAxisRaw("Vertical");
+
         isSneaking = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         currentSpeed = isSneaking ? SNEAK_SPEED : BASE_SPEED;
 
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveZ = Input.GetAxisRaw("Vertical");
+        if (animator != null)
+        {
+            animator.SetBool("IsSneaking", isSneaking);
+        }
 
         if (currentMode == MovementMode.TopDown)
         {
