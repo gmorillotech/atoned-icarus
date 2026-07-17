@@ -6,6 +6,13 @@ public class PlayerHealth : MonoBehaviour
 
     public bool IsDead => isDead;
 
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     public void Die()
     {
         if (isDead)
@@ -15,12 +22,13 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log("Player died!");
 
-        HandleDeath();
+        animator.SetTrigger("Die");
+
+        Invoke(nameof(HandleDeath), 3f);
     }
 
     private void HandleDeath()
     {
-        // temporary
         gameObject.SetActive(false);
     }
 }
