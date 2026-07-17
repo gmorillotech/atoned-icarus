@@ -6,11 +6,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float BASE_SPEED = 7f;
     [SerializeField] private float JUMP_FORCE = 8f;
     [SerializeField] private float SNEAK_SPEED = 3f;
-
     [SerializeField] private float rotationSpeed = 12f;
     
+    private PlayerHealth playerHealth;
     private Rigidbody rb;
     private float currentSpeed;
+    private Animator animator;
     private Vector3 moveInput;
 
     private bool isSneaking;
@@ -26,6 +27,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>();
+
         currentSpeed = BASE_SPEED;
         
         // Initial setup on start
@@ -35,11 +39,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        isSneaking = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-        currentSpeed = isSneaking ? SNEAK_SPEED : BASE_SPEED;
+
+        if (playerHealth != null && playerHealth.IsDead) return;
 
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
+
+        isSneaking = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        currentSpeed = isSneaking ? SNEAK_SPEED : BASE_SPEED;
+
+        if (animator != null)
+        {
+            animator.SetBool("IsSneaking", isSneaking);
+        }
 
         if (currentMode == MovementMode.TopDown)
         {
@@ -66,18 +78,12 @@ public class PlayerController : MonoBehaviour
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, JUMP_FORCE, 0f);
             }
         }
-
-        // --- DEATH TEST INPUT ---
-        // Press 'K' to simulate death and teleport to the last checkpoint
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("[Player] Key 'K' pressed. Triggering Respawn...");
-            DieAndRespawn();
-        }
     }
 
     void FixedUpdate()
     {
+        if (playerHealth != null && playerHealth.IsDead) return;
+
         if (currentMode == MovementMode.TopDown)
         {
             rb.linearVelocity = new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, moveInput.z * currentSpeed);
