@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float rotationSpeed = 12f;
     
+    private PlayerHealth playerHealth;
     private Rigidbody rb;
     private float currentSpeed;
     private Animator animator;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>();
 
         currentSpeed = BASE_SPEED;
         
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if (playerHealth != null && playerHealth.IsDead) return;
 
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
@@ -79,6 +83,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (playerHealth != null && playerHealth.IsDead) return;
+
         if (currentMode == MovementMode.TopDown)
         {
             rb.linearVelocity = new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, moveInput.z * currentSpeed);
