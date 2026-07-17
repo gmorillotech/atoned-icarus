@@ -2,28 +2,32 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private bool isDead = false;
-
-    public bool IsDead => isDead;
+    public bool IsDead { get; private set; }
+    private Rigidbody rb;
 
     private Animator animator;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>(); // DEBUG
     }
 
     public void Die()
     {
-        if (isDead)
+        if (IsDead)
             return;
 
-        isDead = true;
+        IsDead = true;
 
-        Debug.Log("Player died!");
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
 
         animator.SetTrigger("Die");
-
+        Debug.Log("Player died!");
         Invoke(nameof(HandleDeath), 3f);
     }
 
