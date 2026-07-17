@@ -42,12 +42,6 @@ public class PlayerController : MonoBehaviour
 
         if (playerHealth != null && playerHealth.IsDead) return;
 
-        // TEMPORARY TEST
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            playerHealth.Die();
-        }
-
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
