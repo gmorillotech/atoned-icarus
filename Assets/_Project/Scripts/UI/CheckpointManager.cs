@@ -49,7 +49,7 @@ public class CheckpointManager : MonoBehaviour
     private void ResetToLevelStart(GameObject player)
     {
         // Find the spawn point in the scene, or default to (0, 0, 0)
-        GameObject spawnPoint = GameObject.FindWithTag("SpawnPoint");
+        GameObject spawnPoint = GameObject.FindWithTag("Respawn");
         Vector3 targetPos = spawnPoint != null ? spawnPoint.transform.position : Vector3.zero;
         
         TeleportPlayer(player, targetPos);
