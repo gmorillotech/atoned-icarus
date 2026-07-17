@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float BASE_SPEED = 7f;
     [SerializeField] private float SNEAK_SPEED = 3f;
     [SerializeField] private float JUMP_FORCE = 8f;
+    [SerializeField] private float SNEAK_SPEED = 3f;
+
     [SerializeField] private float rotationSpeed = 12f;
     
     private Rigidbody rb;
@@ -37,6 +39,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        isSneaking = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        currentSpeed = isSneaking ? SNEAK_SPEED : BASE_SPEED;
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
