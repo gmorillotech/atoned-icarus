@@ -94,53 +94,84 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void DetermineMovementMode(SceneConfiguration sceneConfig)
-{
-    // Make sure rb is cached even if this runs early
-    if (rb == null) rb = GetComponent<Rigidbody>();
-
-    if (sceneConfig != null)
+    // --- TRIGGER DETECTION FOR HAZARDS ---
+    private void OnTriggerEnter(Collider other)
     {
-        if (sceneConfig.LevelType == LevelType.SideScroller)
+        // If the player touches a hazard tagged "KillZone"
+        if (other.CompareTag("KillZone"))
         {
-            currentMode = MovementMode.SideScroller;
-            
+            Debug.Log("[Player] Entered a KillZone!");
+            DieAndRespawn();
+        }
+    }
+
+    // --- RESPAWN METHOD ---
+    public void DieAndRespawn()
+    {
+        if (CheckpointManager.Instance != null)
+        {
+            // Reset Rigidbody momentum so you don't carry falling speed into the respawn
             if (rb != null)
             {
-                rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-                
-                // George's Requirement: Explicitly set gravity to true for Side-Scroll
-                rb.useGravity = true; 
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
             }
-            Debug.Log($"[PlayerController] Successfully switched to SideScroller movement mode.");
+
+            CheckpointManager.Instance.LoadLastCheckpoint(gameObject);
         }
         else
         {
-            currentMode = MovementMode.TopDown;
+            Debug.LogWarning("[Player] No CheckpointManager found in the scene to handle respawn!");
+        }
+    }
 
+    public void DetermineMovementMode(SceneConfiguration sceneConfig)
+    {
+        // Make sure rb is cached even if this runs early
+        if (rb == null) rb = GetComponent<Rigidbody>();
+
+        if (sceneConfig != null)
+        {
+            if (sceneConfig.LevelType == LevelType.SideScroller)
+            {
+                currentMode = MovementMode.SideScroller;
+                
+                if (rb != null)
+                {
+                    rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+                    
+                    // George's Requirement: Explicitly set gravity to true for Side-Scroll
+                    rb.useGravity = true; 
+                }
+                Debug.Log($"[PlayerController] Successfully switched to SideScroller movement mode.");
+            }
+            else
+            {
+                currentMode = MovementMode.TopDown;
+
+                if (rb != null)
+                {
+                    rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY; 
+                    
+                    // George's Requirement: Turn off gravity and zero out vertical velocity for Top-Down
+                    rb.useGravity = false;
+                    rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+                }
+                Debug.Log($"[PlayerController] Successfully switched to Top-Down movement mode.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerController] DetermineMovementMode received a null SceneConfiguration! Defaulting to Top-Down.");
+            currentMode = MovementMode.TopDown;
             if (rb != null)
             {
-                rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY; 
-                
-                // George's Requirement: Turn off gravity and zero out vertical velocity for Top-Down
+                rb.constraints = RigidbodyConstraints.FreezeRotation;
                 rb.useGravity = false;
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
             }
-            Debug.Log($"[PlayerController] Successfully switched to Top-Down movement mode.");
         }
     }
-    else
-    {
-        Debug.LogWarning("[PlayerController] DetermineMovementMode received a null SceneConfiguration! Defaulting to Top-Down.");
-        currentMode = MovementMode.TopDown;
-        if (rb != null)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.useGravity = false;
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        }
-    }
-}
 
     private bool IsGrounded()
     {
