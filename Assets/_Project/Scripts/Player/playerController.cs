@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float JUMP_FORCE = 8f;
     [SerializeField] private float SNEAK_SPEED = 3f;
     [SerializeField] private float rotationSpeed = 12f;
-
-    private PlayerHealth playerHealth; 
+    
+    private PlayerHealth playerHealth;
     private Rigidbody rb;
     private float currentSpeed;
     private Animator animator;
