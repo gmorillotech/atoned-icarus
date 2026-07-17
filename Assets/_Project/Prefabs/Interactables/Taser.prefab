@@ -106,7 +106,7 @@ MonoBehaviour:
   stunAngle: 45
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
 --- !u!1 &5013653268483462275
 GameObject:
   m_ObjectHideFlags: 0
