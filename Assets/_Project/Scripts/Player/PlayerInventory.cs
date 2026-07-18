@@ -3,6 +3,12 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     private Taser currentTaser;
+    public bool HasBlueCard { get; private set; }
+
+    public void AddBlueCard()
+    {
+        HasBlueCard = true;
+    }
 
     [SerializeField] private float taserCooldown = 10f;
     private float cooldownTimer = 0f;
