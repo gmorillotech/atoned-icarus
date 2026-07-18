@@ -11,7 +11,7 @@ public class CardReader : MonoBehaviour
         {
             playerNearby = true;
             Debug.Log("Press E to use card reader");
-            InteractionUI.Instance.ShowPrompt("Requires Keycard");
+            InteractionUI.Instance?.ShowPrompt("Requires Keycard");
         }
     }
 
@@ -20,7 +20,7 @@ public class CardReader : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = false;
-            InteractionUI.Instance.HidePrompt();
+            InteractionUI.Instance?.HidePrompt();
         }
     }
 
@@ -35,13 +35,21 @@ public class CardReader : MonoBehaviour
                 if (inventory.HasBlueCard)
                 {
                     Debug.Log("Access granted!");
-                    InteractionUI.Instance.HidePrompt();
-                    doorAnimator.SetTrigger("Open");
+                    InteractionUI.Instance?.HidePrompt();
+
+                    if (doorAnimator != null)
+                    {
+                        doorAnimator.SetTrigger("Open");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[CardReader] doorAnimator not assigned!");
+                    }
                 }
                 else
                 {
                     Debug.Log("Access denied. Keycard required.");
-                    InteractionUI.Instance.ShowPrompt("Requires Keycard");
+                    InteractionUI.Instance?.ShowPrompt("Requires Keycard");
                 }
             }
         }

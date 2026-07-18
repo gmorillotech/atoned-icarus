@@ -10,7 +10,7 @@ public class KeycardPickup : MonoBehaviour
         {
             playerNearby = true;
             Debug.Log("Press E to pick up keycard");
-            InteractionUI.Instance.ShowPrompt("Press E");
+            InteractionUI.Instance?.ShowPrompt("Press E");
         }
     }
 
@@ -19,7 +19,7 @@ public class KeycardPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = false;
-            InteractionUI.Instance.HidePrompt();
+            InteractionUI.Instance?.HidePrompt();
         }
     }
 
@@ -35,7 +35,7 @@ public class KeycardPickup : MonoBehaviour
 
                 Debug.Log("Keycard picked up!");
 
-                InteractionUI.Instance.HidePrompt();
+                InteractionUI.Instance?.HidePrompt();
 
                 Destroy(gameObject);
             }
