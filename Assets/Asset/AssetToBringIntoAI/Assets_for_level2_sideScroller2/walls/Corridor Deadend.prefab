@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5267092148777139568}
   - component: {fileID: 6814545821080745647}
   - component: {fileID: 3563045413517473295}
-  m_Layer: 0
+  - component: {fileID: 5712595441890298431}
+  m_Layer: 7
   m_Name: Corridor Deadend
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,5 +111,27 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.30000156, y: 5.799973, z: 6.000001}
-  m_Center: {x: 0.000009618702, y: 1.9000131, z: 2.9999957}
+  m_Size: {x: 0.30000156, y: 5.8613873, z: 6.0526066}
+  m_Center: {x: 0.0000096179065, y: 1.9307203, z: 3.0262985}
+--- !u!95 &5712595441890298431
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460219960544394778}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9e42e19c2bd864349ad8fa2973f7c6ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
