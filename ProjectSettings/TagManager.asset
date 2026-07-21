@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - KillZone
+  - Wall
+  - Lure
   layers:
   - Default
   - TransparentFX

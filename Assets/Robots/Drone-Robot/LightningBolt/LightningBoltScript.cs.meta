@@ -14,5 +14,5 @@ AssetOrigin:
   productId: 59471
   packageName: Lightning Bolt Effect for Unity
   packageVersion: 1.1.0
-  assetPath: Assets/LightningBolt/LightningBoltScript.cs
+  assetPath: Assets/Robots/Drone-Robot/LightningBolt/LightningBoltScript.cs
   uploadId: 898548
