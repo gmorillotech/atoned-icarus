@@ -48,9 +48,11 @@ public class PlayerController : MonoBehaviour
         isSneaking = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         currentSpeed = isSneaking ? SNEAK_SPEED : BASE_SPEED;
 
+        bool isMoving = moveX != 0 || moveZ != 0;
+
         if (animator != null)
         {
-            animator.SetBool("IsSneaking", isSneaking);
+            animator.SetBool("IsSneaking", isSneaking && isMoving);
         }
 
         if (currentMode == MovementMode.TopDown)
