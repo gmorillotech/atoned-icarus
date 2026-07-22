@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float BASE_SPEED = 7f;
+    [SerializeField] private float BASE_SPEED = 4f;
     [SerializeField] private float JUMP_FORCE = 8f;
-    [SerializeField] private float SNEAK_SPEED = 3f;
+    [SerializeField] private float SNEAK_SPEED = 2f;
     [SerializeField] private float rotationSpeed = 12f;
     
     private PlayerHealth playerHealth;
@@ -48,11 +48,15 @@ public class PlayerController : MonoBehaviour
         isSneaking = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         currentSpeed = isSneaking ? SNEAK_SPEED : BASE_SPEED;
 
-        bool isMoving = moveX != 0 || moveZ != 0;
+        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        bool isMoving = horizontalVelocity.magnitude > 0.1f;
 
         if (animator != null)
         {
             animator.SetBool("IsSneaking", isSneaking && isMoving);
+
+            float animationSpeed = horizontalVelocity.magnitude / (BASE_SPEED * 2f);
+            animator.SetFloat("Speed", animationSpeed);
         }
 
         if (currentMode == MovementMode.TopDown)
