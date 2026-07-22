@@ -48,13 +48,14 @@ public class PlayerController : MonoBehaviour
         isSneaking = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         currentSpeed = isSneaking ? SNEAK_SPEED : BASE_SPEED;
 
-        bool isMoving = rb.linearVelocity.magnitude > 0.1f;
+        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        bool isMoving = horizontalVelocity.magnitude > 0.1f;
 
         if (animator != null)
         {
             animator.SetBool("IsSneaking", isSneaking && isMoving);
 
-            float animationSpeed = isMoving ? 1f : 0f;
+            float animationSpeed = horizontalVelocity.magnitude / BASE_SPEED;
             animator.SetFloat("Speed", animationSpeed);
         }
 
