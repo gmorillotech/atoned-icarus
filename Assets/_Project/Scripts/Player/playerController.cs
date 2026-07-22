@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsSneaking", isSneaking && isMoving);
 
-            float animationSpeed = horizontalVelocity.magnitude / BASE_SPEED;
+            float animationSpeed = horizontalVelocity.magnitude / (BASE_SPEED * 2f);
             animator.SetFloat("Speed", animationSpeed);
         }
 
