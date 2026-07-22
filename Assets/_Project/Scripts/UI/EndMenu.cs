@@ -1,7 +1,7 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Required for loading scenes
+using UnityEngine.SceneManagement;
 
-public class EndMenuTrigger : MonoBehaviour
+public class EndMenu : MonoBehaviour
 {
     [SerializeField] private GameObject endMenuCanvas;
 
@@ -20,22 +20,20 @@ public class EndMenuTrigger : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            // Pause game time optional
+            // Pause game time
             Time.timeScale = 0f;
         }
     }
 
-    // --- ADD THESE TWO PUBLIC METHODS FOR YOUR BUTTONS ---
-
     public void StartOver()
     {
-        Time.timeScale = 1f; // Always unpause time first
-        SceneManager.LoadScene("Level1(Drone)"); // Put your exact Level 1 scene name here!
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level1(Drone)"); // Change to your level 1 scene name
     }
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1f; // Unpause time before leaving
-        SceneManager.LoadScene("MainMenu"); // Change "MainMenu" to your exact main menu scene name
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu"); // Change to your main menu scene name
     }
 }
