@@ -28,12 +28,12 @@ public class EndMenu : MonoBehaviour
     public void StartOver()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level1(Drone)"); // Change to your level 1 scene name
-    }
+        SceneManager.LoadScene("Level1(Drone)"); 
+    } 
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); // Change to your main menu scene name
+        SceneManager.LoadScene("MainMenu"); 
     }
 }
