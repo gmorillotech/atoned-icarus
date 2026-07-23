@@ -33,6 +33,15 @@ public class PlayerHealth : MonoBehaviour
 
     private void HandleDeath()
     {
-        gameObject.SetActive(false);
+        if (CheckpointManager.Instance != null)
+        {
+            CheckpointManager.Instance.LoadLastCheckpoint(gameObject);
+        }
+
+        IsDead = false;
+
+        animator.ResetTrigger("Die");
+        animator.Play("Blend Tree");
     }
+
 }
