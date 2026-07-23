@@ -10,6 +10,7 @@ public class Laser : MonoBehaviour
 
     private RaycastHit rayHit;
     private Ray ray;
+    private bool hasHit;
     
     public ArsenalScript mainScript;
 
@@ -22,7 +23,9 @@ public class Laser : MonoBehaviour
     {
         ray = new Ray(transform.position, transform.forward);
 
-        if (Physics.Raycast(ray, out rayHit, laserDistance, ~ignoreMask))
+        hasHit = Physics.Raycast(ray, out rayHit, laserDistance, ~ignoreMask);
+
+        if (hasHit)
         {
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, rayHit.point);
@@ -45,7 +48,10 @@ public class Laser : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(ray.origin, ray.direction * laserDistance);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(rayHit.point, 0.23f);
+        if (hasHit)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(rayHit.point, 0.23f);
+        }
     }
 }

@@ -29,7 +29,7 @@ public class ArsenalRotation : MonoBehaviour
         //incrementing timer
         if (!rotateFlag)
         {
-            rotateTimer += 0.012f;
+            rotateTimer += Time.deltaTime;
         }
         
 

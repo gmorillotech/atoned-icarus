@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Controller : MonoBehaviour
+public class DroneController : MonoBehaviour
 {
     public List<Transform> wayPoint;
     public NavMeshAgent agent;
@@ -62,7 +62,7 @@ public class Controller : MonoBehaviour
         {
             //if the timer has run out, no longer stunned
             agent.speed = 0f;
-            timer = (timer + 0.017f);
+            timer = (timer + Time.deltaTime);
             if ((foundPlayer == true) && (timer < (timerLength-2)) && !stunned)
             {
                 spotLight.intensity = 0f;
