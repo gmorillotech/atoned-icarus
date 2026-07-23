@@ -82,5 +82,12 @@ public class CheckpointManager : MonoBehaviour
         player.transform.position = targetPosition;
 
         if (cc != null) cc.enabled = true;
+
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
     }
 }
