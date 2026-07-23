@@ -74,8 +74,22 @@ public class CheckpointManager : MonoBehaviour
 
     private void TeleportPlayer(GameObject player, Vector3 targetPosition)
     {
-        // If your player uses a CharacterController, we must temporarily disable it 
-        // to manually change transform.position, otherwise it will fight the teleport.
+        // 1. Reset physical movement & velocity completely
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        Rigidbody2D rb2D = player.GetComponent<Rigidbody2D>();
+        if (rb2D != null)
+        {
+            rb2D.linearVelocity = Vector2.zero;
+            rb2D.angularVelocity = 0f;
+        }
+
+        // 2. Temporarily disable CharacterController (if used) to allow position override
         CharacterController cc = player.GetComponent<CharacterController>();
         if (cc != null) cc.enabled = false;
 
@@ -83,11 +97,11 @@ public class CheckpointManager : MonoBehaviour
 
         if (cc != null) cc.enabled = true;
 
-        Rigidbody rb = player.GetComponent<Rigidbody>();
-        if (rb != null)
+        // 3. Stop the red screen flashing overlay instantly
+        FallHazardOverlay hazardOverlay = player.GetComponent<FallHazardOverlay>();
+        if (hazardOverlay != null)
         {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            hazardOverlay.StopFlashing();
         }
     }
 }
