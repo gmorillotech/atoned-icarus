@@ -2,19 +2,36 @@ using UnityEngine;
 
 public class TaserPickup : MonoBehaviour
 {
+    [Header("Item Details")]
+    [SerializeField] private string itemName = "Taser";
+    [SerializeField] private Sprite itemSprite; // Drag your taser UI icon here
+
+    [Header("World Space UI")]
+    [SerializeField] private GameObject interactionPromptUI; // Drag Canvas-PressE here
+
     private bool playerNearby = false;
     private bool isPickedUp = false;
 
+    private void Start()
+    {
+        if (interactionPromptUI != null)
+        {
+            interactionPromptUI.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-
-        if (isPickedUp)
-            return;
+        if (isPickedUp) return;
 
         if (other.CompareTag("Player"))
         {
             playerNearby = true;
-            Debug.Log("Press E to pick up taser");
+
+            if (interactionPromptUI != null)
+            {
+                interactionPromptUI.SetActive(true);
+            }
         }
     }
 
@@ -23,22 +40,33 @@ public class TaserPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = false;
+
+            if (interactionPromptUI != null)
+            {
+                interactionPromptUI.SetActive(false);
+            }
         }
     }
 
-    void Update()
+    private void Update()
     {
-
         if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
-            PlayerInventory inventory =
-                FindFirstObjectByType<PlayerInventory>();
+            PlayerInventory inventory = FindFirstObjectByType<PlayerInventory>();
 
-            inventory.PickupTaser(GetComponent<Taser>());
+            if (inventory != null)
+            {
+                Taser taser = GetComponent<Taser>();
+                inventory.PickupTaser(taser);
 
-            Debug.Log("Taser picked up!");
+                // Update HUD slot UI using the local name & sprite variables
+                if (HUDController.Instance != null)
+                {
+                    HUDController.Instance.DisplayTaser(itemSprite, itemName);
+                }
+            }
+
             isPickedUp = true;
-
             gameObject.SetActive(false);
         }
     }
