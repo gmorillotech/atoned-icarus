@@ -7,11 +7,10 @@ public class EndMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        // Whenever this EndMenu becomes active, instantly hide the HUD
-        HUDController hud = FindFirstObjectByType<HUDController>();
-        if (hud != null)
+        // Whenever this EndMenu becomes active, instantly hide the HUD using the singleton instance
+        if (HUDController.Instance != null)
         {
-            hud.gameObject.SetActive(false);
+            HUDController.Instance.gameObject.SetActive(false);
         }
     }
 
@@ -52,7 +51,7 @@ public class EndMenu : MonoBehaviour
         // Show your game over panel
         gameObject.SetActive(true);
 
-        // Hide the HUD
+        // Hide the HUD using the singleton instance
         if (HUDController.Instance != null)
         {
             HUDController.Instance.HideHUD();
