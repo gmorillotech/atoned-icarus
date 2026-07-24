@@ -10,11 +10,14 @@ public class HUDTester : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Update the top-left objective text
-            HUDController.Instance.UpdateObjective(newObjective);
+            if (HUDController.Instance != null)
+            {
+                // Update the top-left objective text
+                HUDController.Instance.UpdateObjective(newObjective);
 
-            // Display the center description popup for 4 seconds
-            HUDController.Instance.ShowDescriptionPopup(popupTitle, popupDescription, 4f);
+                // Display the center description popup for 4 seconds
+                HUDController.Instance.ShowDescriptionPopup(popupTitle, popupDescription, 4f);
+            }
         }
     }
 }

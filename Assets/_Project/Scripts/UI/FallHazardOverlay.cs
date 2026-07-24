@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class FallHazardOverlay : MonoBehaviour
 {
+    public static FallHazardOverlay Instance { get; private set; }
+
     [Header("Fall Detection Settings")]
     [Tooltip("The exact Y-coordinate height threshold. Flashing starts when the player drops below this Y height.")]
     [SerializeField] private float dangerYLevel = -5f;
@@ -19,6 +21,18 @@ public class FallHazardOverlay : MonoBehaviour
     private Transform playerTransform;
     private bool isFlashing = false;
     private Coroutine flashCoroutine;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {

@@ -98,10 +98,6 @@ public class CheckpointManager : MonoBehaviour
         if (cc != null) cc.enabled = true;
 
         // 3. Stop the red screen flashing overlay instantly
-        FallHazardOverlay hazardOverlay = player.GetComponent<FallHazardOverlay>();
-        if (hazardOverlay != null)
-        {
-            hazardOverlay.StopFlashing();
-        }
+        FallHazardOverlay.Instance?.StopFlashing();
     }
 }
