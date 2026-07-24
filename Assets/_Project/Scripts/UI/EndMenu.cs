@@ -5,6 +5,16 @@ public class EndMenu : MonoBehaviour
 {
     [SerializeField] private GameObject endMenuCanvas;
 
+    private void OnEnable()
+    {
+        // Whenever this EndMenu becomes active, instantly hide the HUD
+        HUDController hud = FindFirstObjectByType<HUDController>();
+        if (hud != null)
+        {
+            hud.gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Check if the object entering the trigger is the Player
@@ -35,5 +45,17 @@ public class EndMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu"); 
+    }
+
+    public void TriggerDefeatScreen()
+    {
+        // Show your game over panel
+        gameObject.SetActive(true);
+
+        // Hide the HUD
+        if (HUDController.Instance != null)
+        {
+            HUDController.Instance.HideHUD();
+        }
     }
 }
