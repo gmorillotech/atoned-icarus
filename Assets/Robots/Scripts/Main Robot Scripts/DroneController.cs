@@ -28,15 +28,15 @@ public class DroneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //stunned by taser, LEFT BUTTON
-        if (Input.GetMouseButtonDown(0))
+        //stunned by taser
+        if (stunned == true)
         {
             stop = true;
-            stunned = true;
+            //stunned = true;
             spotLight.intensity = 0f;
         }
 
-        //player caught, RIGHT BUTTON
+        //player caught
         if (detection.playerSpotted && !stunned)
         {
             stop = true;

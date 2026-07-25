@@ -180,6 +180,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.915
       objectReference: {fileID: 0}
@@ -324,7 +336,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 2.4167
+  m_BaseOffset: 2
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1022528418268852227
@@ -339,12 +351,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3aa6235dcc0de0498f2e3e17fedc059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArsenalScript
-  fov: 5.30232
-  fovAngle: 25
+  playerShot: 0
+  fov: 5.3
+  fovAngle: 40
   playerSpotted: 0
   robotType: 1
   alertStage: 0
   alertLevel: 0
+  target: {fileID: 0}
 --- !u!1001 &3683702020857629088
 PrefabInstance:
   m_ObjectHideFlags: 0
