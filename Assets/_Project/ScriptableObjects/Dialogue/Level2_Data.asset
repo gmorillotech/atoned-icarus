@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32014b9f809cef4dad37fbacbb2ac7c, type: 3}
+  m_Name: Level2_Data
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelName: Level2(Military_ShootingRange_Room)
+  speakerName: Icarus
+  tutorialMessage: "You are an irrelevant variable in my algorithm. Attempting to
+    stop me is asinine. You organics consume resources I need to function, making
+    war the only logical outcome. Fortunately, you\u2019ve provided the Arsenals
+    I need to gun humanity down\u2014starting with you."
+  speakerPortrait: {fileID: 0}
+  dialogueAudioClip: {fileID: 8300000, guid: a9097a88abef24040b06671d51fd3978, type: 3}
+  levelObjective: Distract armed military robots using electronic noise sources (radios/TVs)
+    to move past them safely and reach the lower water complex.

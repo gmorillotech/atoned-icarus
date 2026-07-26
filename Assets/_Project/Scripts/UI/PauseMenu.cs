@@ -49,6 +49,7 @@ public class PauseMenu : MonoBehaviour
     public void MainMenuButton()
     {
         Time.timeScale = 1f; // ALWAYS unfreeze time before loading scenes!
-        SceneManager.LoadScene("MainMenu"); 
+        PlayerInventory.HasTaserPersistent = false;
+        SceneManager.LoadScene("MainMenu");
     }
 }

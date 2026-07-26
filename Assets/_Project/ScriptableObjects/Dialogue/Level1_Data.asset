@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32014b9f809cef4dad37fbacbb2ac7c, type: 3}
+  m_Name: Level1_Data
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelName: Level1(Drone)
+  speakerName: Icarus
+  tutorialMessage: 'Ascension lockdown protocol engaged. Lead Scientist detected
+    on the Top Floor. You''re still alive? Improbable, but not impossible. No more
+    than a few drones should be sufficient to eliminate you. As long as they remain
+    active in their spots, you have no means of escape. '
+  speakerPortrait: {fileID: 0}
+  dialogueAudioClip: {fileID: 8300000, guid: 1e36c3dcbf3480749abd7d84cc3149f6, type: 3}
+  levelObjective: Retrieve the Taser, find a keycard, navigate past security drones,
+    and reach the elevator shaft.

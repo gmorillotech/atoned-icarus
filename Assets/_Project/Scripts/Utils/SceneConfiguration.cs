@@ -11,5 +11,8 @@ public class SceneConfiguration : MonoBehaviour
     [Header("Level Settings")]
     [SerializeField] private LevelType levelType = LevelType.Standard3D;
 
+    public bool showInPockets = false; 
+
     public LevelType LevelType => levelType;
+    public bool ShowInPockets => showInPockets;
 }
