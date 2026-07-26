@@ -10,10 +10,11 @@ public class LevelDialogue : MonoBehaviour
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Image portraitImage;
+    [SerializeField] private DialogueAudio dialogueAudio; 
 
     [Header("Current Level Data")]
     [SerializeField] private LevelData currentLevelData;
-    [SerializeField] private float displayDuration = 5f;
+    [SerializeField] private float displayDuration = 30f;
 
     private void Start()
     {
@@ -35,6 +36,11 @@ public class LevelDialogue : MonoBehaviour
         if (portraitImage != null && currentLevelData.speakerPortrait != null) 
             portraitImage.sprite = currentLevelData.speakerPortrait;
 
+        if (dialogueAudio != null && currentLevelData.dialogueAudioClip != null)
+        {
+            dialogueAudio.PlayDialogueAudio(currentLevelData.dialogueAudioClip);
+        }
+
         dialoguePanel.SetActive(true);
         StartCoroutine(HideDialogueAfterDelay(displayDuration));
     }
@@ -42,6 +48,12 @@ public class LevelDialogue : MonoBehaviour
     private IEnumerator HideDialogueAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        
+        if (dialogueAudio != null)
+        {
+            dialogueAudio.StopAudio();
+        }
+
         if (dialoguePanel != null)
         {
             dialoguePanel.SetActive(false);

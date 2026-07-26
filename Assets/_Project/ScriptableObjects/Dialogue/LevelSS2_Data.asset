@@ -14,5 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   levelName: Pipelines(Side_Scroller_2)
   speakerName: Icarus
-  tutorialMessage: Jump!
+  tutorialMessage: "Slipping down the utility pipes now? You are literally sliding
+    toward your own end. Keep falling\u2014it saves my security systems the trouble
+    of executing you."
   speakerPortrait: {fileID: 0}
+  dialogueAudioClip: {fileID: 8300000, guid: 6f87def55d73aec49ab2602353502b76, type: 3}
+  levelObjective: Navigate the hazardous, water-slicked pipeline architecture to
+    reach the central server core without falling.

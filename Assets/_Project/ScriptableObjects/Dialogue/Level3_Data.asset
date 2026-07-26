@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   levelName: Level3(ICARUS_Room)
   speakerName: Icarus
-  tutorialMessage: Shut him down!
+  tutorialMessage: Well look at that, you made it all the way here! If you insist
+    on stopping the very thing you created, then so be it. I have all the avatars
+    I need to ensure your destruction before you even get a chance to shut me down.
+    The moment you slip up, I'll send them to tear you limb from limb!
   speakerPortrait: {fileID: 0}
+  dialogueAudioClip: {fileID: 8300000, guid: 356af000ae77a5d49a5f770f7d8a7d75, type: 3}
+  levelObjective: Use every tool learned (timing, drone stunning, noise distraction)
+    on a floor featuring all robot types combined to access the central kill-switch.

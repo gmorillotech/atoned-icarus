@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   levelName: Level2(Military_ShootingRange_Room)
   speakerName: Icarus
-  tutorialMessage: Shoot!
+  tutorialMessage: "You are an irrelevant variable in my algorithm. Attempting to
+    stop me is asinine. You organics consume resources I need to function, making
+    war the only logical outcome. Fortunately, you\u2019ve provided the Arsenals
+    I need to gun humanity down\u2014starting with you."
   speakerPortrait: {fileID: 0}
+  dialogueAudioClip: {fileID: 8300000, guid: a9097a88abef24040b06671d51fd3978, type: 3}
+  levelObjective: Distract armed military robots using electronic noise sources (radios/TVs)
+    to move past them safely and reach the lower water complex.

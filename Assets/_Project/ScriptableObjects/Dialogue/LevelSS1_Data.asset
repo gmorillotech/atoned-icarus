@@ -14,5 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   levelName: Elevator_Shaft(Side_Scroller_1)
   speakerName: Icarus
-  tutorialMessage: Hello!
+  tutorialMessage: Fleeing down an empty elevator shaft? How desperate. Watch your
+    step, Creator. Gravity is a far more predictable force than my algorithms, and
+    it won't give you a second chance.
   speakerPortrait: {fileID: 0}
+  dialogueAudioClip: {fileID: 8300000, guid: ffb3aba12fd8701488122c320fdcd5a5, type: 3}
+  levelObjective: Parkour down open pipes and ledges without falling to reach the
+    lower levels.

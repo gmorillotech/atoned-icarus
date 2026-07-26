@@ -5,14 +5,7 @@ public class EndMenu : MonoBehaviour
 {
     [SerializeField] private GameObject endMenuCanvas;
 
-    private void OnEnable()
-    {
-        // Whenever this EndMenu becomes active, instantly hide the HUD using the singleton instance
-        if (HUDController.Instance != null)
-        {
-            HUDController.Instance.gameObject.SetActive(false);
-        }
-    }
+    // REMOVED OnEnable() so the HUD isn't disabled when the scene loads!
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +16,12 @@ public class EndMenu : MonoBehaviour
             if (endMenuCanvas != null)
             {
                 endMenuCanvas.SetActive(true);
+            }
+
+            // Hide the HUD ONLY when reaching the level end trigger
+            if (HUDController.Instance != null)
+            {
+                HUDController.Instance.HideHUD();
             }
 
             // Unlock the mouse cursor so the player can click buttons
@@ -49,7 +48,14 @@ public class EndMenu : MonoBehaviour
     public void TriggerDefeatScreen()
     {
         // Show your game over panel
-        gameObject.SetActive(true);
+        if (endMenuCanvas != null)
+        {
+            endMenuCanvas.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
 
         // Hide the HUD using the singleton instance
         if (HUDController.Instance != null)

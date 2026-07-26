@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   levelName: Level1(Drone)
   speakerName: Icarus
-  tutorialMessage: Find the Taser and then find the keycard to open the door to the
-    next room beaware of the drones. They're flying above you!
+  tutorialMessage: 'Ascension lockdown protocol engaged. Lead Scientist detected
+    on the Top Floor. You''re still alive? Improbable, but not impossible. No more
+    than a few drones should be sufficient to eliminate you. As long as they remain
+    active in their spots, you have no means of escape. '
   speakerPortrait: {fileID: 0}
+  dialogueAudioClip: {fileID: 8300000, guid: 1e36c3dcbf3480749abd7d84cc3149f6, type: 3}
+  levelObjective: Retrieve the Taser, find a keycard, navigate past security drones,
+    and reach the elevator shaft.
