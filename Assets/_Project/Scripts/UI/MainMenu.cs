@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         // Loads the level using its exact scene name
+        PlayerInventory.HasTaserPersistent = false;
         SceneManager.LoadScene("Level1(Drone)");
     }
 
