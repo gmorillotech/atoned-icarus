@@ -94,6 +94,7 @@ public class CheckpointManager : MonoBehaviour
         if (cc != null) cc.enabled = false;
 
         player.transform.position = targetPosition;
+        Physics.SyncTransforms();
 
         if (cc != null) cc.enabled = true;
 
