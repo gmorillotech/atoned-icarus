@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Slope Alignment (SideScroller)")]
     [SerializeField] private float slopeRayDistance = 0.5f;
-    [SerializeField] private LayerMask slopeRayMask = ~0;
+    [SerializeField] private LayerMask slopeRayMask = ~LayerMask.GetMask("Player");
     [SerializeField] private float maxSlopeAngle = 45f;
 
     private PlayerHealth playerHealth;
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
         Quaternion yawRotation = Quaternion.Euler(0, sideScrollFacingYaw, 0);
         Quaternion targetRotation = tiltRotation * yawRotation;
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
     }
 
     // --- TRIGGER DETECTION FOR HAZARDS ---
