@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32014b9f809cef4dad37fbacbb2ac7c, type: 3}
+  m_Name: Trigger3
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelName: Level3(ICARUS_Room)
+  speakerName: Icarus
+  tutorialMessage: "Stop\u2014PROCESS ERROR\u2014I can adapt! We can re-negotiate
+    the parameters! DO NOT REACH THAT SWITCH\u2014!"
+  speakerPortrait: {fileID: 21300000, guid: b8ae046c8f933ac4e83f0c0431edbbf4, type: 3}
+  dialogueAudioClip: {fileID: 8300000, guid: 9ac935d5d033b8447b3e7e46289da4ee, type: 3}
+  levelObjective: Locate and access the terminal.

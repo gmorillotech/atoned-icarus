@@ -6464,7 +6464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 916565335}
   - component: {fileID: 916565337}
-  - component: {fileID: 916565336}
+  - component: {fileID: 916565338}
   m_Layer: 0
   m_Name: ICARUS_Trigger_2
   m_TagString: Untagged
@@ -6487,24 +6487,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &916565336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916565334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5897909a505053744add94c14c3b7f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SequentialDialogueTrigger
-  dialogueSteps:
-  - speakerName: ICARUS
-    dialogueText: You think you're saving humanity? You're setting them back decades!
-      If you reach that breaker, I will purge every server and wipe Ascension's systems
-      clean! You will leave here with NOTHING! Years of your life, WASTED!
-    hasTriggered: 0
 --- !u!65 &916565337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6526,6 +6508,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &916565338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916565334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdda46503ada764a91023cb3d7b4bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTriggerZone
+  icarusDialogueData: {fileID: 11400000, guid: 914a12bacd5a8bb4b82bf40e59347db9, type: 2}
+  triggerOnce: 1
 --- !u!1 &952468988
 GameObject:
   m_ObjectHideFlags: 0
@@ -6589,14 +6585,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 952468988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5897909a505053744add94c14c3b7f16, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cdda46503ada764a91023cb3d7b4bf8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SequentialDialogueTrigger
-  dialogueSteps:
-  - speakerName: ICARUS
-    dialogueText: "Stop\u2014PROCESS ERROR\u2014I can adapt! We can re-negotiate
-      the parameters! DO NOT REACH THAT SWITCH\u2014!"
-    hasTriggered: 0
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTriggerZone
+  icarusDialogueData: {fileID: 11400000, guid: ec2dada3bdf3b7b46946e97583b72dcc, type: 2}
+  triggerOnce: 1
 --- !u!1001 &962969648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15265,7 +15258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2003430708}
   - component: {fileID: 2003430710}
-  - component: {fileID: 2003430709}
+  - component: {fileID: 2003430711}
   m_Layer: 0
   m_Name: ICARUS_Trigger_1
   m_TagString: Untagged
@@ -15288,23 +15281,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2003430709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003430707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5897909a505053744add94c14c3b7f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SequentialDialogueTrigger
-  dialogueSteps:
-  - speakerName: ICARUS
-    dialogueText: You dare step into my core sector?! Security units, eliminate the
-      intruder! Stop them before they reach the main terminal!
-    hasTriggered: 0
 --- !u!65 &2003430710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15326,6 +15302,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2003430711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003430707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdda46503ada764a91023cb3d7b4bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTriggerZone
+  icarusDialogueData: {fileID: 11400000, guid: 0ea4e2b935cd7dd42ad7ce3320c41449, type: 2}
+  triggerOnce: 1
 --- !u!1001 &2022174941
 PrefabInstance:
   m_ObjectHideFlags: 0
