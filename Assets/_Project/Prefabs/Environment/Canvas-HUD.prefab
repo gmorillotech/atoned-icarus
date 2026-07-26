@@ -1024,6 +1024,7 @@ GameObject:
   - component: {fileID: 2761593796064688996}
   - component: {fileID: 6367214830593554717}
   - component: {fileID: 1317882377314665640}
+  - component: {fileID: 2310040466635763969}
   m_Layer: 5
   m_Name: DialoguePanel
   m_TagString: Untagged
@@ -1110,6 +1111,7 @@ MonoBehaviour:
   dialogueText: {fileID: 7078107956286617057}
   portraitImage: {fileID: 4419506800126172455}
   dialogueAudio: {fileID: 1317882377314665640}
+  canvasGroup: {fileID: 0}
   currentLevelData: {fileID: 0}
   displayDuration: 10
 --- !u!82 &6367214830593554717
@@ -1221,6 +1223,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cc00d8e90125747904c69bec00ab1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAudio
+  audioSource: {fileID: 6367214830593554717}
+--- !u!225 &2310040466635763969
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630706244260424788}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3930812586561469205
 GameObject:
   m_ObjectHideFlags: 0

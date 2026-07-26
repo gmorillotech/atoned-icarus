@@ -11,12 +11,18 @@ public class LevelDialogue : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Image portraitImage;
     [SerializeField] private DialogueAudio dialogueAudio; 
+    [SerializeField] private CanvasGroup canvasGroup;
 
-    [Header("Default Level Data")]
+    [Header("Default Level Start Data")]
     [SerializeField] private LevelData currentLevelData;
-    [SerializeField] private float displayDuration = 10f;
+    [SerializeField] private float defaultDuration = 5f;
 
     private Coroutine activeDialogueCoroutine;
+
+    private void Awake()
+    {
+        if (canvasGroup == null) canvasGroup = GetComponent<CanvasGroup>();
+    }
 
     private void Start()
     {
@@ -26,22 +32,16 @@ public class LevelDialogue : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Displays dialogue using the default LevelData set in the Inspector.
-    /// </summary>
     public void ShowLevelDialogue()
     {
         ShowLevelDialogue(currentLevelData);
     }
 
-    /// <summary>
-    /// Displays dialogue dynamically using any supplied LevelData (e.g. from Triggers).
-    /// </summary>
     public void ShowLevelDialogue(LevelData data)
     {
         if (data == null) return;
 
-        // Stop active timing/audio if a new trigger is activated
+        // Stop active timing/audio if another trigger is hit early
         if (activeDialogueCoroutine != null)
         {
             StopCoroutine(activeDialogueCoroutine);
@@ -58,13 +58,30 @@ public class LevelDialogue : MonoBehaviour
         if (portraitImage != null && data.speakerPortrait != null) 
             portraitImage.sprite = data.speakerPortrait;
 
+        // --- Calculate Dynamic Display Duration ---
+        float finalDuration = defaultDuration;
+
         if (dialogueAudio != null && data.dialogueAudioClip != null)
         {
             dialogueAudio.PlayDialogueAudio(data.dialogueAudioClip);
+            finalDuration = data.dialogueAudioClip.length; // Default to audio length
         }
 
+        // Use custom display duration if specified on the ScriptableObject
+        if (data.displayDuration > 0f)
+        {
+            finalDuration = data.displayDuration;
+        }
+
+        // Show UI via CanvasGroup
         dialoguePanel.SetActive(true);
-        activeDialogueCoroutine = StartCoroutine(HideDialogueAfterDelay(displayDuration));
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
+        }
+
+        activeDialogueCoroutine = StartCoroutine(HideDialogueAfterDelay(finalDuration));
     }
 
     private IEnumerator HideDialogueAfterDelay(float delay)
@@ -76,9 +93,10 @@ public class LevelDialogue : MonoBehaviour
             dialogueAudio.StopAudio();
         }
 
-        if (dialoguePanel != null)
+        if (canvasGroup != null)
         {
-            dialoguePanel.SetActive(false);
+            canvasGroup.alpha = 0f;
+            canvasGroup.blocksRaycasts = false;
         }
 
         activeDialogueCoroutine = null;

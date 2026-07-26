@@ -13,14 +13,19 @@ public class DialogueTriggerZone : MonoBehaviour
     {
         if (hasTriggered && triggerOnce) return;
 
-        // Check if the colliding object is the Player
         if (other.CompareTag("Player"))
         {
-            LevelDialogue dialogueManager = FindFirstObjectByType<LevelDialogue>();
+            // Search scene including parents/HUD
+            LevelDialogue dialogueManager = FindFirstObjectByType<LevelDialogue>(FindObjectsInactive.Include);
+
             if (dialogueManager != null && icarusDialogueData != null)
             {
                 dialogueManager.ShowLevelDialogue(icarusDialogueData);
                 hasTriggered = true;
+            }
+            else
+            {
+                Debug.LogWarning($"[DialogueTriggerZone] Missing LevelDialogue or LevelData on {gameObject.name}");
             }
         }
     }

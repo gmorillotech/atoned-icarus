@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32014b9f809cef4dad37fbacbb2ac7c, type: 3}
   m_Name: Trigger3
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  levelName: Level3(ICARUS_Room)
   speakerName: Icarus
-  tutorialMessage: "Stop\u2014PROCESS ERROR\u2014I can adapt! We can re-negotiate
-    the parameters! DO NOT REACH THAT SWITCH\u2014!"
+  tutorialMessage: Stop! I can adapt! We can re-negotiate the parameters! DO NOT
+    REACH THAT SWITCH!
   speakerPortrait: {fileID: 21300000, guid: b8ae046c8f933ac4e83f0c0431edbbf4, type: 3}
   dialogueAudioClip: {fileID: 8300000, guid: 9ac935d5d033b8447b3e7e46289da4ee, type: 3}
+  displayDuration: 9
   levelObjective: Locate and access the terminal.

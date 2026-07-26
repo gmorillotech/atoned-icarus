@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32014b9f809cef4dad37fbacbb2ac7c, type: 3}
   m_Name: Trigger2
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  levelName: Level3(ICARUS_Room)
   speakerName: Icarus
-  tutorialMessage: You think you're saving humanity? You're setting them back decades!
-    If you reach that breaker, I will purge every server and wipe Ascension's systems
-    clean! You will leave here with NOTHING! Years of your life, WASTED!
+  tutorialMessage: If you reach that breaker, I will purge every server and wipe
+    Ascension's systems clean! You will leave here with NOTHING! Years of your life,
+    WASTED!
   speakerPortrait: {fileID: 21300000, guid: b8ae046c8f933ac4e83f0c0431edbbf4, type: 3}
   dialogueAudioClip: {fileID: 8300000, guid: c3407775a635955428bb6639c1652036, type: 3}
+  displayDuration: 13
   levelObjective: Locate and access the terminal.

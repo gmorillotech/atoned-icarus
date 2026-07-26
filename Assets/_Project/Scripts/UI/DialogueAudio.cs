@@ -1,22 +1,27 @@
-using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class DialogueAudio : MonoBehaviour
 {
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        audioSource.playOnAwake = false;
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     public void PlayDialogueAudio(AudioClip clip)
     {
-        if (clip == null) return;
+        if (clip == null || audioSource == null) return;
 
-        audioSource.Stop();
+        // Force stop any currently playing voice audio before starting the new one
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
         audioSource.clip = clip;
         audioSource.Play();
     }

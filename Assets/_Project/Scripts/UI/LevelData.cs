@@ -1,20 +1,18 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewLevelData", menuName = "Game/Level Data")]
+[CreateAssetMenu(fileName = "NewLevelData", menuName = "ScriptableObjects/LevelData")]
 public class LevelData : ScriptableObject
 {
-    public string levelName;
-    
-    [Header("Dialogue Settings")]
-    public string speakerName = "Icarus";
-    [TextArea(3, 5)]
-    public string tutorialMessage;
+    [Header("Speaker Information")]
+    public string speakerName;
+    [TextArea(3, 5)] public string tutorialMessage;
     public Sprite speakerPortrait;
-    
-    // ADD THIS FIELD: Holds the audio clip for this level's dialogue
     public AudioClip dialogueAudioClip;
 
-    [Header("Objective Settings")]
-    [TextArea(2, 4)]
-    public string levelObjective = "Locate and access the terminal.";
+    [Header("Display Settings")]
+    [Tooltip("How many seconds this dialogue stays on screen. If left at 0, it will automatically match the length of the audio clip!")]
+    public float displayDuration = 0f; 
+
+    [Header("Objective Information")]
+    public string levelObjective;
 }
