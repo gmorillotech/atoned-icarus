@@ -509,6 +509,7 @@ MonoBehaviour:
   fov: 4
   fovAngle: 360
   playerSpotted: 0
+  playerConeReduction: 3
   playerTarget: {fileID: 0}
   target: {fileID: 0}
   radiusColor: {r: 0, g: 0.093877554, b: 1, a: 0}
@@ -1691,7 +1692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Laser
   lineRenderer: {fileID: 4367785794935959384}
-  laserDistance: 3
+  laserDistance: 60
   ignoreMask:
     serializedVersion: 2
     m_Bits: 0
