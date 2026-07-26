@@ -61,7 +61,14 @@ public class ArsenalScript : MonoBehaviour
 
                 if (Mathf.Abs(signedAngle) < fovAngle / 2)
                 {
+                    //making the drone attack
                     playerSpotted = true;
+                    //killing the player
+                    if (c.TryGetComponent(out PlayerHealth playerScript))
+                    {
+                        playerScript.Die();
+                    }
+
                 }
                 break;
             }
