@@ -36,13 +36,15 @@ public class EndMenu : MonoBehaviour
     public void StartOver()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level1(Drone)"); 
-    } 
+        PlayerInventory.HasTaserPersistent = false;
+        SceneManager.LoadScene("Level1(Drone)");
+    }
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); 
+        PlayerInventory.HasTaserPersistent = false;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void TriggerDefeatScreen()
