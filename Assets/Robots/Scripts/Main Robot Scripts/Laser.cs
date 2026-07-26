@@ -35,7 +35,7 @@ public class Laser : MonoBehaviour
                 mainScript.playerShot = true;
                 //killing player
                 
-                if (rayHit.collider.TryGetComponent(out PlayerHealth playerScript))
+                if (rayHit.collider.TryGetComponent(out PlayerHealth playerScript) && !playerScript.IsDead)
                 {
                     playerScript.Die();
                 }
