@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Slope Alignment (SideScroller)")]
     [SerializeField] private float slopeRayDistance = 0.5f;
-    [SerializeField] private LayerMask slopeRayMask = ~LayerMask.GetMask("Player");
+    [SerializeField] private LayerMask slopeRayMask = ~0;
     [SerializeField] private float maxSlopeAngle = 45f;
 
     private PlayerHealth playerHealth;
@@ -36,8 +36,14 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
 
+        // Only apply the Player-excluded default if the Inspector still has the field at ~0/Everything
+        if (slopeRayMask == ~0)
+        {
+            slopeRayMask = ~LayerMask.GetMask("Player");
+        }
+
         currentSpeed = BASE_SPEED;
-        
+
         // Initial setup on start
         var initialConfig = Object.FindFirstObjectByType<SceneConfiguration>();
         DetermineMovementMode(initialConfig);
