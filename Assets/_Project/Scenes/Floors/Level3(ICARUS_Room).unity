@@ -7434,6 +7434,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2740747237767794561, guid: 401ebdbad4f903348a4add6527a9f2e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6665785095761271995, guid: 401ebdbad4f903348a4add6527a9f2e5, type: 3}
       propertyPath: m_Name
       value: Pipes_long_01
@@ -7484,16 +7488,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6665785095761271995, guid: 401ebdbad4f903348a4add6527a9f2e5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1107265026}
-    - targetCorrespondingSourceObject: {fileID: 6665785095761271995, guid: 401ebdbad4f903348a4add6527a9f2e5, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1107265025}
     - targetCorrespondingSourceObject: {fileID: 2740747237767794561, guid: 401ebdbad4f903348a4add6527a9f2e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1107265028}
-    - targetCorrespondingSourceObject: {fileID: 2740747237767794561, guid: 401ebdbad4f903348a4add6527a9f2e5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1107265027}
   m_SourcePrefab: {fileID: 100100000, guid: 401ebdbad4f903348a4add6527a9f2e5, type: 3}
 --- !u!1 &1107265023 stripped
 GameObject:
@@ -7526,32 +7524,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1107265026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107265023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8956ff662b9223641b47d982e7b0c00c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneSwapper
-  sceneName: Pipelines(Side_Scroller_2)
---- !u!114 &1107265027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107265024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8956ff662b9223641b47d982e7b0c00c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneSwapper
-  sceneName: Pipelines(Side_Scroller_2)
 --- !u!65 &1107265028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7567,7 +7539,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
