@@ -10,7 +10,7 @@ public class ArsenalRotation : MonoBehaviour
     public float fov;
     [Range(0, 360)] public float fovAngle;
     public bool playerSpotted;
-    
+    [Min(1)] public int playerConeReduction = 3;
     //Targetting variables
     public Transform playerTarget;
     public Transform target;
@@ -71,7 +71,7 @@ public class ArsenalRotation : MonoBehaviour
         //main system for checking nearby entities
         playerSpotted = false;
         //two lists, one for audio at full range and players at half range
-        Collider[] playersNearby = Physics.OverlapSphere(transform.position, fov/2);
+        Collider[] playersNearby = Physics.OverlapSphere(transform.position, fov/playerConeReduction);
         Collider[] soundsNearby = Physics.OverlapSphere(transform.position, fov);
 
         //Checking for audio distractions
