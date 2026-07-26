@@ -2,16 +2,28 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    // Persistent state across scenes (Taser only)
+    public static bool HasTaserPersistent = false;
+
+    // Reset per-scene automatically (Keycard stays in Level 1)
     public bool HasBlueCard { get; private set; }
-    private Taser currentTaser;
 
     [Header("Keycard Config")]
     [SerializeField] private Sprite keycardSprite;
 
     [Header("Taser Config")]
-    [SerializeField] private float taserCooldown = 5f;
+    [SerializeField] private float taserCooldown = 6f;
     [SerializeField] private Sprite taserIcon;
     private float cooldownTimer = 0f;
+
+    private void Start()
+    {
+        // When Level 3 loads, if we picked up the Taser earlier, activate its HUD element
+        if (HasTaserPersistent && HUDController.Instance != null)
+        {
+            HUDController.Instance.DisplayTaser(taserIcon, "Taser");
+        }
+    }
 
     public void AddBlueCard()
     {
@@ -26,7 +38,8 @@ public class PlayerInventory : MonoBehaviour
 
     public void PickupTaser(Taser taser)
     {
-        currentTaser = taser;
+        // Mark as acquired persistently across levels
+        HasTaserPersistent = true;
 
         if (HUDController.Instance != null)
         {
@@ -37,7 +50,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Update()
     {
-        // Handle Taser recharge progress
+        // Handle Taser recharge progress UI
         if (cooldownTimer > 0)
         {
             cooldownTimer -= Time.deltaTime;
@@ -49,19 +62,28 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
-        // Fire Taser with F key
+        // Fire Taser with F key in Level 3 (or any level after acquiring)
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (currentTaser != null)
+            if (HasTaserPersistent)
             {
                 if (cooldownTimer <= 0)
                 {
-                    currentTaser.Activate();
                     cooldownTimer = taserCooldown;
 
                     if (HUDController.Instance != null)
                     {
                         HUDController.Instance.SetTaserEnergy(0f);
+                    }
+
+                    Taser taser = FindFirstObjectByType<Taser>();
+                    if (taser != null)
+                    {
+                        taser.Activate();
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Taser fired but no Taser found in the current scene!");
                     }
                 }
                 else
