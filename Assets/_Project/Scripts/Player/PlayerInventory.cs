@@ -76,8 +76,15 @@ public class PlayerInventory : MonoBehaviour
                         HUDController.Instance.SetTaserEnergy(0f);
                     }
 
-                    // Perform your Taser logic/attack here
-                    Debug.Log("Taser Fired!");
+                    Taser taser = FindFirstObjectByType<Taser>();
+                    if (taser != null)
+                    {
+                        taser.Activate();
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Taser fired but no Taser found in the current scene!");
+                    }
                 }
                 else
                 {
