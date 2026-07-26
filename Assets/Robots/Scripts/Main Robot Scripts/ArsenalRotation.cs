@@ -10,7 +10,7 @@ public class ArsenalRotation : MonoBehaviour
     public float fov;
     [Range(0, 360)] public float fovAngle;
     public bool playerSpotted;
-    public int playerConeReduction = 3;
+    [Min(1)] public int playerConeReduction = 3;
     //Targetting variables
     public Transform playerTarget;
     public Transform target;
