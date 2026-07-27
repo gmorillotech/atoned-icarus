@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 7177220329962557215}
   - component: {fileID: 841083191935759712}
   - component: {fileID: 3975608383107062906}
+  - component: {fileID: 4772558572039203371}
   m_Layer: 5
   m_Name: Canvas-HUD
   m_TagString: Untagged
@@ -404,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92333a04b10dd02479cfea2481f837c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUDController
+  hudCanvasGroup: {fileID: 4772558572039203371}
   objectiveText: {fileID: 7612947931639219379}
   inPocketsContainer: {fileID: 5396673959447502167}
   keycardSlotGroup: {fileID: 3930812586561469205}
@@ -413,6 +415,18 @@ MonoBehaviour:
   popupPanel: {fileID: 0}
   popupTitleText: {fileID: 0}
   popupBodyText: {fileID: 0}
+--- !u!225 &4772558572039203371
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705776330178703925}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1445693745382870690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,7 +1127,7 @@ MonoBehaviour:
   dialogueAudio: {fileID: 1317882377314665640}
   canvasGroup: {fileID: 0}
   currentLevelData: {fileID: 0}
-  displayDuration: 10
+  defaultDuration: 5
 --- !u!82 &6367214830593554717
 AudioSource:
   m_ObjectHideFlags: 0
