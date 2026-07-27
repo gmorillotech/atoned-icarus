@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Level1(Drone)"); 
+        PlayerInventory.HasTaserPersistent = false;
+        SceneManager.LoadScene("Level1(Drone)");
     }
 
     public void OpenControls()
