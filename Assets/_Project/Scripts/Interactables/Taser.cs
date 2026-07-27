@@ -3,8 +3,8 @@ using UnityEngine;
 public class Taser : MonoBehaviour
 {
     [SerializeField] private float stunRange = 5f;
-    [SerializeField] private float stunAngle = 45f;
-    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private float stunAngle = 90f;
+    [SerializeField] private LayerMask droneLayer;
 
     private Transform playerTransform;
 
@@ -28,26 +28,38 @@ public class Taser : MonoBehaviour
         Collider[] objectsInRange = Physics.OverlapSphere(
             playerTransform.position,
             stunRange,
-            enemyLayer
+            droneLayer
         );
 
         foreach (Collider obj in objectsInRange)
         {
 
+            Debug.Log("Found collider: " + obj.name);
+
             if (obj.transform == playerTransform)
                 continue;
 
-            Vector3 directionToTarget =
-                (obj.transform.position - playerTransform.position).normalized;
+            // Ignore height difference when checking the stun cone
+            Vector3 directionToTarget = obj.transform.position - playerTransform.position;
+            directionToTarget.y = 0f;
+            directionToTarget.Normalize();
 
-            float angle = Vector3.Angle(
-                playerTransform.forward,
-                directionToTarget
-            );
+            // Ignore the player's vertical look direction too
+            Vector3 playerForward = playerTransform.forward;
+            playerForward.y = 0f;
+            playerForward.Normalize();
+
+            float angle = Vector3.Angle(playerForward, directionToTarget);
 
             if (angle <= stunAngle)
             {
-                Debug.Log("Stunned: " + obj.name);
+                DroneController drone = obj.GetComponent<DroneController>();
+
+                if (drone != null)
+                {
+                    drone.stunned = true;
+                    Debug.Log("Drone stunned!");
+                }
             }
         }
     }

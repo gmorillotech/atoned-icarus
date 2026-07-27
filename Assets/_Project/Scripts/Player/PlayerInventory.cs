@@ -15,6 +15,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private float taserCooldown = 6f;
     [SerializeField] private Sprite taserIcon;
     private float cooldownTimer = 0f;
+    private Taser equippedTaser;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class PlayerInventory : MonoBehaviour
     {
         // Mark as acquired persistently across levels
         HasTaserPersistent = true;
+        equippedTaser = GetComponent<Taser>();
 
         if (HUDController.Instance != null)
         {
@@ -76,14 +78,13 @@ public class PlayerInventory : MonoBehaviour
                         HUDController.Instance.SetTaserEnergy(0f);
                     }
 
-                    Taser taser = FindFirstObjectByType<Taser>();
-                    if (taser != null)
+                    if (equippedTaser != null)
                     {
-                        taser.Activate();
+                        equippedTaser.Activate();
                     }
                     else
                     {
-                        Debug.LogWarning("Taser fired but no Taser found in the current scene!");
+                        Debug.LogWarning("Player has no equipped Taser reference!");
                     }
                 }
                 else
