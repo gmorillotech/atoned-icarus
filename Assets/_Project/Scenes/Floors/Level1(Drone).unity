@@ -28872,6 +28872,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2761593796064688996, guid: eb9feb8206cbe7c4ba0a691e0a57fc38, type: 3}
+      propertyPath: defaultDuration
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761593796064688996, guid: eb9feb8206cbe7c4ba0a691e0a57fc38, type: 3}
       propertyPath: displayDuration
       value: 24
       objectReference: {fileID: 0}
