@@ -4692,6 +4692,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2761593796064688996, guid: eb9feb8206cbe7c4ba0a691e0a57fc38, type: 3}
+      propertyPath: defaultDuration
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761593796064688996, guid: eb9feb8206cbe7c4ba0a691e0a57fc38, type: 3}
       propertyPath: displayDuration
       value: 24
       objectReference: {fileID: 0}
@@ -7117,6 +7121,142 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f8fb84ac24e7be4ca11889d338e7d46, type: 3}
+--- !u!1 &916565334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 916565335}
+  - component: {fileID: 916565337}
+  - component: {fileID: 916565338}
+  m_Layer: 0
+  m_Name: ICARUS_Trigger_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &916565335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916565334}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.6968245, z: -0, w: 0.7172417}
+  m_LocalPosition: {x: 3.43, y: 1.53, z: 7.25}
+  m_LocalScale: {x: 5.791533, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 88.346, z: 0}
+--- !u!65 &916565337
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916565334}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &916565338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916565334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdda46503ada764a91023cb3d7b4bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTriggerZone
+  icarusDialogueData: {fileID: 11400000, guid: 914a12bacd5a8bb4b82bf40e59347db9, type: 2}
+  triggerOnce: 1
+--- !u!1 &952468988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952468990}
+  - component: {fileID: 952468989}
+  - component: {fileID: 952468991}
+  m_Layer: 0
+  m_Name: ICARUS_Trigger_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &952468989
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952468988}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &952468990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952468988}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7088541, z: -0, w: 0.7053551}
+  m_LocalPosition: {x: -2.67, y: 1.21, z: -9.55}
+  m_LocalScale: {x: 1, y: 1, z: 4.064227}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90.284, z: 0}
+--- !u!114 &952468991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952468988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdda46503ada764a91023cb3d7b4bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTriggerZone
+  icarusDialogueData: {fileID: 11400000, guid: ec2dada3bdf3b7b46946e97583b72dcc, type: 2}
+  triggerOnce: 1
 --- !u!1001 &962969648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16176,6 +16316,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003126276}
   m_Mesh: {fileID: 4300000, guid: c384f5eb3f7e941e9a3e3cc22851e42b, type: 3}
+--- !u!1 &2003430707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2003430708}
+  - component: {fileID: 2003430710}
+  - component: {fileID: 2003430711}
+  m_Layer: 0
+  m_Name: ICARUS_Trigger_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2003430708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003430707}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.711697, z: -0, w: 0.7024867}
+  m_LocalPosition: {x: 25.65, y: 1.61, z: -10.43}
+  m_LocalScale: {x: 1, y: 1, z: 8.744472}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.746, z: 0}
+--- !u!65 &2003430710
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003430707}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2003430711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003430707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdda46503ada764a91023cb3d7b4bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTriggerZone
+  icarusDialogueData: {fileID: 11400000, guid: 0ea4e2b935cd7dd42ad7ce3320c41449, type: 2}
+  triggerOnce: 1
 --- !u!1001 &2022174941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17797,3 +18005,6 @@ SceneRoots:
   - {fileID: 111092289}
   - {fileID: 895035233}
   - {fileID: 488786344}
+  - {fileID: 2003430708}
+  - {fileID: 916565335}
+  - {fileID: 952468990}

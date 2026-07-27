@@ -1,11 +1,14 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class HUDController : MonoBehaviour
 {
     public static HUDController Instance { get; private set; }
+
+    [Header("Canvas Group Settings")]
+    [SerializeField] private CanvasGroup hudCanvasGroup;
 
     [Header("UI References - Objectives")]
     [SerializeField] private TextMeshProUGUI objectiveText;
@@ -37,6 +40,12 @@ public class HUDController : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
+        }
+
+        if (hudCanvasGroup == null)
+        {
+            hudCanvasGroup = GetComponent<CanvasGroup>();
         }
     }
 
@@ -56,11 +65,14 @@ public class HUDController : MonoBehaviour
         }
     }
 
+    // --- Objective API ---
     public void UpdateObjective(string newObjective)
     {
-        if (objectiveText != null) objectiveText.text = newObjective;
+        if (objectiveText != null) 
+            objectiveText.text = newObjective;
     }
 
+    // --- Inventory / Keycard API ---
     public void UpdateActiveItem(string itemName, Sprite itemSprite)
     {
         DisplayKeycard(itemSprite, itemName);
@@ -119,6 +131,30 @@ public class HUDController : MonoBehaviour
         popupCoroutine = null;
     }
 
-    public void HideHUD() => gameObject.SetActive(false);
-    public void ShowHUD() => gameObject.SetActive(true);
+    // --- HUD Visibility API ---
+    public void HideHUD()
+    {
+        if (hudCanvasGroup != null)
+        {
+            hudCanvasGroup.alpha = 0f;
+            hudCanvasGroup.blocksRaycasts = false;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowHUD()
+    {
+        if (hudCanvasGroup != null)
+        {
+            hudCanvasGroup.alpha = 1f;
+            hudCanvasGroup.blocksRaycasts = true;
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
+    }
 }

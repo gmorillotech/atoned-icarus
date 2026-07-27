@@ -22,18 +22,24 @@ public class PauseMenu : MonoBehaviour
     {
         if (container != null)
         {
-            // Toggle container visibility based on current state
             bool isCurrentlyActive = container.activeSelf;
-            container.SetActive(!isCurrentlyActive);
+            bool willBePaused = !isCurrentlyActive;
 
-            // If it WAS active, we are resuming (Time = 1). Otherwise, we pause (Time = 0).
-            Time.timeScale = isCurrentlyActive ? 1f : 0f;
+            container.SetActive(willBePaused);
 
-            Debug.Log(isCurrentlyActive ? "Game Resumed." : "Game Paused.");
-        }
-        else
-        {
-            Debug.LogError("PauseMenu error: Container reference is missing in the Inspector!");
+            // Pause or Unpause Audio Global Listener (Freezes Icarus voice exactly where he was)
+            AudioListener.pause = willBePaused;
+
+            // Toggle HUD Visibility
+            if (HUDController.Instance != null)
+            {
+                if (willBePaused)
+                    HUDController.Instance.HideHUD();
+                else
+                    HUDController.Instance.ShowHUD();
+            }
+
+            Time.timeScale = willBePaused ? 0f : 1f;
         }
     }
 
@@ -42,7 +48,13 @@ public class PauseMenu : MonoBehaviour
         if (container != null)
         {
             container.SetActive(false);
+            AudioListener.pause = false; // Resume Audio
             Time.timeScale = 1f;
+
+            if (HUDController.Instance != null)
+            {
+                HUDController.Instance.ShowHUD();
+            }
         }
     }
 

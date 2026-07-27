@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32014b9f809cef4dad37fbacbb2ac7c, type: 3}
+  m_Name: Trigger2
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  speakerName: Icarus
+  tutorialMessage: If you reach that breaker, I will purge every server and wipe
+    Ascension's systems clean! You will leave here with NOTHING! Years of your life,
+    WASTED!
+  speakerPortrait: {fileID: 21300000, guid: b8ae046c8f933ac4e83f0c0431edbbf4, type: 3}
+  dialogueAudioClip: {fileID: 8300000, guid: c3407775a635955428bb6639c1652036, type: 3}
+  displayDuration: 13
+  levelObjective: Locate and access the terminal.
