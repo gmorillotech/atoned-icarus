@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
 
     private bool isSneaking;
     private Vector3 facingDirection;
+    private bool isSliding;
+    private float slideSpeed;
+    private Vector3 slideDirection;
+
 
     public bool IsSneaking => isSneaking;
     public Vector3 FacingDirection => facingDirection;
@@ -65,10 +69,20 @@ public class PlayerController : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetBool("IsSneaking", isSneaking && isMoving);
+            animator.SetBool("IsSliding", isSliding);
 
-            float animationSpeed = horizontalVelocity.magnitude / (BASE_SPEED * 2f);
-            animator.SetFloat("Speed", animationSpeed);
+            if (isSliding)
+            {
+                animator.SetBool("IsSneaking", false);
+                animator.SetFloat("Speed", 0f);
+            }
+            else
+            {
+                animator.SetBool("IsSneaking", isSneaking && isMoving);
+
+                float animationSpeed = horizontalVelocity.magnitude / (BASE_SPEED * 2f);
+                animator.SetFloat("Speed", animationSpeed);
+            }
         }
 
         if (currentMode == MovementMode.TopDown)
@@ -108,7 +122,23 @@ public class PlayerController : MonoBehaviour
         }
         else if (currentMode == MovementMode.SideScroller)
         {
-            rb.linearVelocity = new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, 0f);
+            if (isSliding)
+            {
+                rb.linearVelocity = new Vector3(
+                    slideDirection.x * slideSpeed,
+                    rb.linearVelocity.y,
+                    0f
+                );
+            }
+            else
+            {
+                rb.linearVelocity = new Vector3(
+                    moveInput.x * currentSpeed,
+                    rb.linearVelocity.y,
+                    0f
+                );
+            }
+
             ApplySideScrollerSlopeTilt();
         }
     }
@@ -254,4 +284,12 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
+    public void SetSliding(bool sliding, float speed, Vector3 direction)
+    {
+        isSliding = sliding;
+        slideSpeed = speed;
+        slideDirection = direction;
+    }
+
 }
