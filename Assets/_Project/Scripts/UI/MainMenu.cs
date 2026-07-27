@@ -3,18 +3,30 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // This function will be called when the Play button is clicked
+    [Header("UI Panels")]
+    public GameObject mainButtonsContainer; 
+    public GameObject controlsPanel;         
+
     public void PlayGame()
     {
-        // Loads the level using its exact scene name
-        PlayerInventory.HasTaserPersistent = false;
-        SceneManager.LoadScene("Level1(Drone)");
+        SceneManager.LoadScene("Level1(Drone)"); 
     }
 
-    // This function can be hooked up to a Quit button later if you want!
+    public void OpenControls()
+    {
+        if (mainButtonsContainer != null) mainButtonsContainer.SetActive(false);
+        if (controlsPanel != null) controlsPanel.SetActive(true);
+    }
+
+    public void CloseControls()
+    {
+        if (controlsPanel != null) controlsPanel.SetActive(false);
+        if (mainButtonsContainer != null) mainButtonsContainer.SetActive(true);
+    }
+
     public void QuitGame()
     {
-        Debug.Log("Quit Game Clicked!");
         Application.Quit();
+        Debug.Log("Game Quit!");
     }
 }

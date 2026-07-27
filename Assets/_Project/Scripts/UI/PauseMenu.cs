@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject container; 
+    [Header("UI Panels")]
+    public GameObject container;      // Main Pause Menu Panel
+    public GameObject controlsPanel;  // Controls Keyboard Display Panel
 
     void Start()
     {
@@ -14,7 +16,15 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
-            TogglePause();
+            // If Controls screen is open, ESC should close Controls and show Pause Menu
+            if (controlsPanel != null && controlsPanel.activeSelf)
+            {
+                CloseControls();
+            }
+            else
+            {
+                TogglePause();
+            }
         }
     }
 
@@ -25,9 +35,15 @@ public class PauseMenu : MonoBehaviour
             bool isCurrentlyActive = container.activeSelf;
             bool willBePaused = !isCurrentlyActive;
 
+            // Make sure controls panel is closed if unpausing
+            if (!willBePaused && controlsPanel != null)
+            {
+                controlsPanel.SetActive(false);
+            }
+
             container.SetActive(willBePaused);
 
-            // Pause or Unpause Audio Global Listener (Freezes Icarus voice exactly where he was)
+            // Pause or Unpause Audio Global Listener
             AudioListener.pause = willBePaused;
 
             // Toggle HUD Visibility
@@ -43,8 +59,24 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Call this from the "CONTROLS" Button OnClick()
+    public void OpenControls()
+    {
+        if (container != null) container.SetActive(false);
+        if (controlsPanel != null) controlsPanel.SetActive(true);
+    }
+
+    // Call this from the Controls "BACK" Button OnClick()
+    public void CloseControls()
+    {
+        if (controlsPanel != null) controlsPanel.SetActive(false);
+        if (container != null) container.SetActive(true);
+    }
+
     public void ResumeButton()
     {
+        if (controlsPanel != null) controlsPanel.SetActive(false);
+
         if (container != null)
         {
             container.SetActive(false);
@@ -61,6 +93,7 @@ public class PauseMenu : MonoBehaviour
     public void MainMenuButton()
     {
         Time.timeScale = 1f; // ALWAYS unfreeze time before loading scenes!
+        AudioListener.pause = false; // Unpause audio before scene switch
         PlayerInventory.HasTaserPersistent = false;
         SceneManager.LoadScene("MainMenu");
     }
