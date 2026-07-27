@@ -994,6 +994,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arsenal-Robot (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4049487236449048104, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
+      propertyPath: playerTarget
+      value: 
+      objectReference: {fileID: 581552882}
     - target: {fileID: 5604565859518344460, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.62512
@@ -1580,6 +1584,10 @@ PrefabInstance:
       propertyPath: fov
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4049487236449048104, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
+      propertyPath: playerTarget
+      value: 
+      objectReference: {fileID: 581552882}
     - target: {fileID: 4049487236449048104, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
       propertyPath: playerConeReduction
       value: 7
@@ -2705,6 +2713,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arsenal-Robot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4049487236449048104, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
+      propertyPath: playerTarget
+      value: 
+      objectReference: {fileID: 581552882}
     - target: {fileID: 5604565859518344460, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.9573246
@@ -16843,6 +16855,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4049487236449048104, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
+      propertyPath: playerTarget
+      value: 
+      objectReference: {fileID: 581552882}
+    - target: {fileID: 4049487236449048104, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
       propertyPath: playerConeReduction
       value: 7
       objectReference: {fileID: 0}
@@ -18678,6 +18694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arsenal-Robot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4049487236449048104, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
+      propertyPath: playerTarget
+      value: 
+      objectReference: {fileID: 581552882}
     - target: {fileID: 5604565859518344460, guid: a7bc6a26199d9a44eab8aff060b93c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.79
