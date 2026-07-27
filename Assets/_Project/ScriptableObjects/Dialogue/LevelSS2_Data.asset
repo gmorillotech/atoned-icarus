@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32014b9f809cef4dad37fbacbb2ac7c, type: 3}
+  m_Name: LevelSS2_Data
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelName: Pipelines(Side_Scroller_2)
+  speakerName: Icarus
+  tutorialMessage: "Slipping down the utility pipes now? You are literally sliding
+    toward your own end. Keep falling\u2014it saves my security systems the trouble
+    of executing you."
+  speakerPortrait: {fileID: 0}
+  dialogueAudioClip: {fileID: 8300000, guid: 6f87def55d73aec49ab2602353502b76, type: 3}
+  levelObjective: Navigate the hazardous, water-slicked pipeline architecture to
+    reach the central server core without falling.

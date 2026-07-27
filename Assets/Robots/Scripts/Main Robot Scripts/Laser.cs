@@ -33,6 +33,13 @@ public class Laser : MonoBehaviour
             if (rayHit.collider.CompareTag("Player"))
             {
                 mainScript.playerShot = true;
+                //killing player
+                
+                if (rayHit.collider.TryGetComponent(out PlayerHealth playerScript) && !playerScript.IsDead)
+                {
+                    playerScript.Die();
+                }
+                
             }
 
         }

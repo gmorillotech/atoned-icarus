@@ -1,28 +1,28 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class HUDController : MonoBehaviour
 {
     public static HUDController Instance { get; private set; }
 
+    [Header("Canvas Group Settings")]
+    [SerializeField] private CanvasGroup hudCanvasGroup;
+
     [Header("UI References - Objectives")]
     [SerializeField] private TextMeshProUGUI objectiveText;
 
     [Header("In Pockets UI - Container")]
-    [SerializeField] private GameObject inPocketsContainer; // Parent UI object holding keycard, taser, etc.
+    [SerializeField] private GameObject inPocketsContainer;
 
     [Header("In Pockets UI - Keycard Slot")]
     [SerializeField] private GameObject keycardSlotGroup;
     [SerializeField] private Image keycardIcon;
     [SerializeField] private TextMeshProUGUI keycardText;
 
-    [Header("In Pockets UI - Taser Slot")]
-    [SerializeField] private GameObject taserSlotGroup;
-    [SerializeField] private Image taserIcon;
-    [SerializeField] private TextMeshProUGUI taserText;
-    [SerializeField] private Slider taserEnergySlider;
+    [Header("Sub-Controllers")]
+    [SerializeField] private TaserHUDUI taserUI; // Handled separately!
 
     [Header("Description Pop-up")]
     [SerializeField] private GameObject popupPanel;
@@ -40,6 +40,12 @@ public class HUDController : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
+        }
+
+        if (hudCanvasGroup == null)
+        {
+            hudCanvasGroup = GetComponent<CanvasGroup>();
         }
     }
 
@@ -50,26 +56,23 @@ public class HUDController : MonoBehaviour
 
     private void CheckLevelTypeAndSetPockets()
     {
-        // Find the SceneConfiguration component in the scene
         SceneConfiguration sceneConfig = FindFirstObjectByType<SceneConfiguration>();
 
-        if (sceneConfig != null)
+        if (sceneConfig != null && inPocketsContainer != null)
         {
-            // If the level is a SideScroller, hide the pocket container entirely
-            bool shouldShowPockets = sceneConfig.LevelType != LevelType.SideScroller;
-
-            if (inPocketsContainer != null)
-            {
-                inPocketsContainer.SetActive(shouldShowPockets);
-            }
+            // Explicitly checks the toggle set on the level's SceneConfiguration
+            inPocketsContainer.SetActive(sceneConfig.showInPockets);
         }
     }
 
+    // --- Objective API ---
     public void UpdateObjective(string newObjective)
     {
-        if (objectiveText != null) objectiveText.text = newObjective;
+        if (objectiveText != null) 
+            objectiveText.text = newObjective;
     }
 
+    // --- Inventory / Keycard API ---
     public void UpdateActiveItem(string itemName, Sprite itemSprite)
     {
         DisplayKeycard(itemSprite, itemName);
@@ -87,40 +90,25 @@ public class HUDController : MonoBehaviour
         if (keycardSlotGroup != null) keycardSlotGroup.SetActive(false);
     }
 
-    // Call when Taser is picked up
+    // --- Taser API Forwarding ---
     public void DisplayTaser(Sprite sprite, string name = "Taser")
     {
-        if (taserSlotGroup != null) taserSlotGroup.SetActive(true);
-        if (taserIcon != null && sprite != null) taserIcon.sprite = sprite;
-        if (taserText != null) taserText.text = name;
-
-        // Show the energy slider when the taser is equipped
-        if (taserEnergySlider != null) 
-        {
-            taserEnergySlider.gameObject.SetActive(true);
-        }
-
-        SetTaserEnergy(1f); // Full bar on pickup
+        if (taserUI != null) taserUI.DisplayTaser(sprite, name);
     }
 
-    // Call if the taser is dropped or removed
     public void HideTaser()
     {
-        if (taserSlotGroup != null) taserSlotGroup.SetActive(false);
-        if (taserEnergySlider != null) taserEnergySlider.gameObject.SetActive(false);
+        if (taserUI != null) taserUI.HideTaser();
     }
 
     public void SetTaserEnergy(float fillAmount)
     {
-        if (taserEnergySlider != null)
-        {
-            taserEnergySlider.value = Mathf.Clamp01(fillAmount);
-        }
+        if (taserUI != null) taserUI.SetEnergy(fillAmount);
     }
 
+    // --- Popup API ---
     public void ShowPrompt(string message, float duration = 2f)
     {
-        // Pass prompt messages to your popup panel
         ShowDescriptionPopup("Interact", message, duration);
     }
 
@@ -143,13 +131,30 @@ public class HUDController : MonoBehaviour
         popupCoroutine = null;
     }
 
+    // --- HUD Visibility API ---
     public void HideHUD()
     {
-        gameObject.SetActive(false);
+        if (hudCanvasGroup != null)
+        {
+            hudCanvasGroup.alpha = 0f;
+            hudCanvasGroup.blocksRaycasts = false;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void ShowHUD()
     {
-        gameObject.SetActive(true);
+        if (hudCanvasGroup != null)
+        {
+            hudCanvasGroup.alpha = 1f;
+            hudCanvasGroup.blocksRaycasts = true;
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
     }
 }

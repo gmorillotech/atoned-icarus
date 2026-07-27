@@ -7,15 +7,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float JUMP_FORCE = 8f;
     [SerializeField] private float SNEAK_SPEED = 2f;
     [SerializeField] private float rotationSpeed = 12f;
-    
+
+    [Header("Slope Alignment (SideScroller)")]
+    [SerializeField] private float slopeRayDistance = 0.5f;
+    [SerializeField] private LayerMask slopeRayMask = ~0;
+    [SerializeField] private float maxSlopeAngle = 45f;
+
     private PlayerHealth playerHealth;
     private Rigidbody rb;
     private float currentSpeed;
     private Animator animator;
     private Vector3 moveInput;
+    private float sideScrollFacingYaw;
 
     private bool isSneaking;
     private Vector3 facingDirection;
+    private bool isSliding;
+    private float slideSpeed;
+    private Vector3 slideDirection;
+
 
     public bool IsSneaking => isSneaking;
     public Vector3 FacingDirection => facingDirection;
@@ -30,8 +40,14 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
 
+        // Only apply the Player-excluded default if the Inspector still has the field at ~0/Everything
+        if (slopeRayMask == ~0)
+        {
+            slopeRayMask = ~LayerMask.GetMask("Player");
+        }
+
         currentSpeed = BASE_SPEED;
-        
+
         // Initial setup on start
         var initialConfig = Object.FindFirstObjectByType<SceneConfiguration>();
         DetermineMovementMode(initialConfig);
@@ -53,10 +69,20 @@ public class PlayerController : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetBool("IsSneaking", isSneaking && isMoving);
+            animator.SetBool("IsSliding", isSliding);
 
-            float animationSpeed = horizontalVelocity.magnitude / (BASE_SPEED * 2f);
-            animator.SetFloat("Speed", animationSpeed);
+            if (isSliding)
+            {
+                animator.SetBool("IsSneaking", false);
+                animator.SetFloat("Speed", 0f);
+            }
+            else
+            {
+                animator.SetBool("IsSneaking", isSneaking && isMoving);
+
+                float animationSpeed = horizontalVelocity.magnitude / (BASE_SPEED * 2f);
+                animator.SetFloat("Speed", animationSpeed);
+            }
         }
 
         if (currentMode == MovementMode.TopDown)
@@ -74,9 +100,9 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = new Vector3(moveX, 0f, 0f).normalized;
 
-            // Smoothly turn left or right along the 2D plane
-            if (moveX > 0) transform.rotation = Quaternion.Euler(0, 90, 0);
-            else if (moveX < 0) transform.rotation = Quaternion.Euler(0, -90, 0);
+            // Track left/right facing; actual rotation (with slope tilt) is applied in FixedUpdate
+            if (moveX > 0) sideScrollFacingYaw = 90f;
+            else if (moveX < 0) sideScrollFacingYaw = -90f;
 
             // Jump handling
             if (Input.GetButtonDown("Jump") && IsGrounded())
@@ -96,8 +122,57 @@ public class PlayerController : MonoBehaviour
         }
         else if (currentMode == MovementMode.SideScroller)
         {
-            rb.linearVelocity = new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, 0f);
+            if (isSliding)
+            {
+                rb.linearVelocity = new Vector3(
+                    slideDirection.x * slideSpeed,
+                    rb.linearVelocity.y,
+                    0f
+                );
+            }
+            else
+            {
+                rb.linearVelocity = new Vector3(
+                    moveInput.x * currentSpeed,
+                    rb.linearVelocity.y,
+                    0f
+                );
+            }
+
+            ApplySideScrollerSlopeTilt();
         }
+    }
+
+    private void ApplySideScrollerSlopeTilt()
+    {
+        Vector3 groundNormal = Vector3.up;
+
+        Collider myCollider = GetComponent<Collider>();
+        Vector3 rayOrigin;
+
+        if (myCollider != null)
+        {
+            float colliderBottomY = myCollider.bounds.center.y - myCollider.bounds.extents.y;
+            rayOrigin = new Vector3(transform.position.x, colliderBottomY + 0.2f, transform.position.z);
+        }
+        else
+        {
+            rayOrigin = transform.position;
+        }
+
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, slopeRayDistance, slopeRayMask))
+        {
+            if (Vector3.Angle(Vector3.up, hit.normal) <= maxSlopeAngle)
+            {
+                groundNormal = hit.normal;
+            }
+        }
+
+        Quaternion tiltRotation = Quaternion.FromToRotation(Vector3.up, groundNormal);
+        Quaternion yawRotation = Quaternion.Euler(0, sideScrollFacingYaw, 0);
+        Quaternion targetRotation = tiltRotation * yawRotation;
+
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
     }
 
     // --- TRIGGER DETECTION FOR HAZARDS ---
@@ -141,13 +216,16 @@ public class PlayerController : MonoBehaviour
             if (sceneConfig.LevelType == LevelType.SideScroller)
             {
                 currentMode = MovementMode.SideScroller;
-                
+
+                // Preserve whatever yaw the object is already facing, so switching modes doesn't snap it
+                sideScrollFacingYaw = transform.eulerAngles.y;
+
                 if (rb != null)
                 {
                     rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-                    
+
                     // George's Requirement: Explicitly set gravity to true for Side-Scroll
-                    rb.useGravity = true; 
+                    rb.useGravity = true;
                 }
                 Debug.Log($"[PlayerController] Successfully switched to SideScroller movement mode.");
             }
@@ -206,4 +284,12 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
+    public void SetSliding(bool sliding, float speed, Vector3 direction)
+    {
+        isSliding = sliding;
+        slideSpeed = speed;
+        slideDirection = direction;
+    }
+
 }
