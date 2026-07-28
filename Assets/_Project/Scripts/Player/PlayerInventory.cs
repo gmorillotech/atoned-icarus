@@ -55,7 +55,7 @@ public class PlayerInventory : MonoBehaviour
         {
             heldTaser.SetActive(true);
         }
-        
+
         equippedTaser = GetComponent<Taser>();
 
         if (HUDController.Instance != null)
@@ -86,16 +86,19 @@ public class PlayerInventory : MonoBehaviour
             {
                 if (cooldownTimer <= 0)
                 {
-                    cooldownTimer = taserCooldown;
-
-                    if (HUDController.Instance != null)
-                    {
-                        HUDController.Instance.SetTaserEnergy(0f);
-                    }
-
                     if (equippedTaser != null)
                     {
-                        equippedTaser.Activate();
+                        bool successfulHit = equippedTaser.Activate();
+
+                        if (successfulHit)
+                        {
+                            cooldownTimer = taserCooldown;
+
+                            if (HUDController.Instance != null)
+                            {
+                                HUDController.Instance.SetTaserEnergy(0f);
+                            }
+                        }
                     }
                     else
                     {

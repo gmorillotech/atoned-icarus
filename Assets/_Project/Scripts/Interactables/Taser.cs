@@ -15,12 +15,9 @@ public class Taser : MonoBehaviour
         playerTransform = FindFirstObjectByType<PlayerController>().transform;
     }
 
-    public void Activate()
+    public bool Activate()
     {
-
-        Debug.Log("⚡ TASER ACTIVATED!");
-        taserAudio.pitch = Random.Range(0.9f, 1.1f);
-        taserAudio.Play();
+        bool droneHit = false;
 
         Debug.DrawRay(
             playerTransform.position,
@@ -62,13 +59,21 @@ public class Taser : MonoBehaviour
                 if (drone != null)
                 {
                     drone.stunned = true;
-
+                    droneHit = true;
                     ShowBeam(obj.transform.position);
 
                     Debug.Log("Drone stunned!");
                 }
             }
         }
+
+        if(droneHit)
+        {
+            taserAudio.pitch = Random.Range(0.9f, 1.1f);
+            taserAudio.Play();
+        }
+
+        return droneHit;
     }
 
     private void OnDrawGizmosSelected()
