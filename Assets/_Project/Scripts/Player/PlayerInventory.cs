@@ -16,13 +16,22 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private Sprite taserIcon;
     private float cooldownTimer = 0f;
     private Taser equippedTaser;
+    [SerializeField] private GameObject heldTaser;
 
     private void Start()
     {
-        // When Level 3 loads, if we picked up the Taser earlier, activate its HUD element
-        if (HasTaserPersistent && HUDController.Instance != null)
+        // Restore taser after changing scenes
+        if (HasTaserPersistent)
         {
-            HUDController.Instance.DisplayTaser(taserIcon, "Taser");
+            if (heldTaser != null)
+            {
+                heldTaser.SetActive(true);
+            }
+
+            if (HUDController.Instance != null)
+            {
+                HUDController.Instance.DisplayTaser(taserIcon, "Taser");
+            }
         }
     }
 
@@ -41,6 +50,12 @@ public class PlayerInventory : MonoBehaviour
     {
         // Mark as acquired persistently across levels
         HasTaserPersistent = true;
+        
+        if (heldTaser != null)
+        {
+            heldTaser.SetActive(true);
+        }
+        
         equippedTaser = GetComponent<Taser>();
 
         if (HUDController.Instance != null)
