@@ -15,13 +15,25 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private float taserCooldown = 6f;
     [SerializeField] private Sprite taserIcon;
     private float cooldownTimer = 0f;
+    private Taser equippedTaser;
+    [SerializeField] private GameObject heldTaser;
 
     private void Start()
     {
-        // When Level 3 loads, if we picked up the Taser earlier, activate its HUD element
-        if (HasTaserPersistent && HUDController.Instance != null)
+        // Restore taser after changing scenes
+        if (HasTaserPersistent)
         {
-            HUDController.Instance.DisplayTaser(taserIcon, "Taser");
+            equippedTaser = GetComponent<Taser>();
+
+            if (heldTaser != null)
+            {
+                heldTaser.SetActive(true);
+            }
+
+            if (HUDController.Instance != null)
+            {
+                HUDController.Instance.DisplayTaser(taserIcon, "Taser");
+            }
         }
     }
 
@@ -40,6 +52,13 @@ public class PlayerInventory : MonoBehaviour
     {
         // Mark as acquired persistently across levels
         HasTaserPersistent = true;
+        
+        if (heldTaser != null)
+        {
+            heldTaser.SetActive(true);
+        }
+
+        equippedTaser = GetComponent<Taser>();
 
         if (HUDController.Instance != null)
         {
@@ -69,21 +88,23 @@ public class PlayerInventory : MonoBehaviour
             {
                 if (cooldownTimer <= 0)
                 {
-                    cooldownTimer = taserCooldown;
-
-                    if (HUDController.Instance != null)
+                    if (equippedTaser != null)
                     {
-                        HUDController.Instance.SetTaserEnergy(0f);
-                    }
+                        bool successfulHit = equippedTaser.Activate();
 
-                    Taser taser = FindFirstObjectByType<Taser>();
-                    if (taser != null)
-                    {
-                        taser.Activate();
+                        if (successfulHit)
+                        {
+                            cooldownTimer = taserCooldown;
+
+                            if (HUDController.Instance != null)
+                            {
+                                HUDController.Instance.SetTaserEnergy(0f);
+                            }
+                        }
                     }
                     else
                     {
-                        Debug.LogWarning("Taser fired but no Taser found in the current scene!");
+                        Debug.LogWarning("Player has no equipped Taser reference!");
                     }
                 }
                 else
