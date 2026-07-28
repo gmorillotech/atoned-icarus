@@ -23,6 +23,8 @@ public class PlayerInventory : MonoBehaviour
         // Restore taser after changing scenes
         if (HasTaserPersistent)
         {
+            equippedTaser = GetComponent<Taser>();
+
             if (heldTaser != null)
             {
                 heldTaser.SetActive(true);

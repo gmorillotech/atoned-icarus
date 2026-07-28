@@ -12,7 +12,7 @@ public class Taser : MonoBehaviour
 
     private void Awake()
     {
-        playerTransform = FindFirstObjectByType<PlayerController>().transform;
+        playerTransform = transform;
     }
 
     public bool Activate()
@@ -34,9 +34,6 @@ public class Taser : MonoBehaviour
 
         foreach (Collider obj in objectsInRange)
         {
-
-            Debug.Log("Found collider: " + obj.name);
-
             if (obj.transform == playerTransform)
                 continue;
 
@@ -61,8 +58,6 @@ public class Taser : MonoBehaviour
                     drone.stunned = true;
                     droneHit = true;
                     ShowBeam(obj.transform.position);
-
-                    Debug.Log("Drone stunned!");
                 }
             }
         }
