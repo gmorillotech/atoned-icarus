@@ -6,6 +6,9 @@ public class EndMenu : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject endMenuCanvas;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip mainMenuMusic;
+
     private void OnTriggerEnter(Collider other)
     {
         // Detect when player enters the level finish area
@@ -38,6 +41,12 @@ public class EndMenu : MonoBehaviour
 
         // 4. Pause game time
         Time.timeScale = 0f;
+
+        // 5. Play main menu music
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic(mainMenuMusic);
+        }
     }
 
     public void StartOver()
