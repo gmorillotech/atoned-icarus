@@ -14,7 +14,8 @@ public class InteractableHighlight : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        var playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) player = playerObj.transform;
 
         if (highlightLight != null)
         {
