@@ -5,9 +5,9 @@ public class InteractableHighlight : MonoBehaviour
     [Header("Highlight Settings")]
     [SerializeField] private Light highlightLight;
     [SerializeField] private float activationDistance = 12f;
-    [SerializeField] private float maxIntensity = 110f;
+    [SerializeField] private float maxIntensity = 30f;
     [SerializeField] private float pulseSpeed = 1.5f;
-    [SerializeField] private float minPulseIntensity = 40f;
+    [SerializeField] private float minPulseIntensity = 10f;
 
     private Transform player;
     private float originalIntensity;
