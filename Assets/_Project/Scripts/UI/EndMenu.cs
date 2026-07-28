@@ -3,66 +3,68 @@ using UnityEngine.SceneManagement;
 
 public class EndMenu : MonoBehaviour
 {
+    [Header("UI References")]
     [SerializeField] private GameObject endMenuCanvas;
 
-    // REMOVED OnEnable() so the HUD isn't disabled when the scene loads!
+    [Header("Audio")]
+    [SerializeField] private AudioClip mainMenuMusic;
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the object entering the trigger is the Player
+        // Detect when player enters the level finish area
         if (other.CompareTag("Player"))
         {
-            // Activate the End Menu Canvas
-            if (endMenuCanvas != null)
-            {
-                endMenuCanvas.SetActive(true);
-            }
+            OpenEndMenu();
+        }
+    }
 
-            // Hide the HUD ONLY when reaching the level end trigger
-            if (HUDController.Instance != null)
-            {
-                HUDController.Instance.HideHUD();
-            }
+    /// <summary>
+    /// Call this method when the level ends (via trigger or script)
+    /// </summary>
+    public void OpenEndMenu()
+    {
+        // 1. Activate UI Canvas
+        if (endMenuCanvas != null)
+        {
+            endMenuCanvas.SetActive(true);
+        }
 
-            // Unlock the mouse cursor so the player can click buttons
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+        // 2. Hide game HUD
+        if (HUDController.Instance != null)
+        {
+            HUDController.Instance.HideHUD();
+        }
 
-            // Pause game time
-            Time.timeScale = 0f;
+        // 3. Unlock cursor for UI interaction
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // 4. Pause game time
+        Time.timeScale = 0f;
+
+        // 5. Play main menu music
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic(mainMenuMusic);
         }
     }
 
     public void StartOver()
     {
-        Time.timeScale = 1f;
-        PlayerInventory.HasTaserPersistent = false;
+        ResetGameState();
         SceneManager.LoadScene("Level1(Drone)");
     }
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1f;
-        PlayerInventory.HasTaserPersistent = false;
+        ResetGameState();
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void TriggerDefeatScreen()
+    private void ResetGameState()
     {
-        // Show your game over panel
-        if (endMenuCanvas != null)
-        {
-            endMenuCanvas.SetActive(true);
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
-
-        // Hide the HUD using the singleton instance
-        if (HUDController.Instance != null)
-        {
-            HUDController.Instance.HideHUD();
-        }
+        Time.timeScale = 1f;
+        AudioListener.pause = false; // Ensures global audio isn't paused in the next scene
+        PlayerInventory.HasTaserPersistent = false;
     }
 }
