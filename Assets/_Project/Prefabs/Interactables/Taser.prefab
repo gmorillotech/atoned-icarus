@@ -235,9 +235,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableHighlight
   highlightLight: {fileID: 8967374407929040506}
   activationDistance: 15
-  maxIntensity: 2.5
+  maxIntensity: 40
   pulseSpeed: 1.5
-  minPulseIntensity: 40
+  minPulseIntensity: 2.5
 --- !u!1001 &4820238778844322018
 PrefabInstance:
   m_ObjectHideFlags: 0
