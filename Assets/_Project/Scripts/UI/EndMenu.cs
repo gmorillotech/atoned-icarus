@@ -20,8 +20,6 @@ public class EndMenu : MonoBehaviour
     /// </summary>
     public void OpenEndMenu()
     {
-        Debug.Log("Player reached end menu!");
-
         // 1. Activate UI Canvas
         if (endMenuCanvas != null)
         {

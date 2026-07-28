@@ -16,8 +16,6 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("PauseMenu script is active and running!");
-
         // 1. Try to find music source from persistent AudioManager if not assigned
         if (musicAudioSource == null && AudioManager.Instance != null)
         {
