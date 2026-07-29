@@ -46,8 +46,8 @@ Light:
   m_Color: {r: 1, g: 0.0810342, b: 0, a: 1}
   m_Intensity: 100
   m_Range: 5
-  m_SpotAngle: 15
-  m_InnerSpotAngle: 10
+  m_SpotAngle: 26.401274
+  m_InnerSpotAngle: 21.401274
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
     m_Type: 0
@@ -283,6 +283,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 550191928416262031, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 42.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 550191928416262031, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 42.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 550191928416262031, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 42.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1591178994563640721, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -423,13 +435,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArsenalScript
   playerShot: 0
-  fov: 5.3
+  fov: 20
   fovAngle: 40
   playerSpotted: 0
   robotType: 1
   alertStage: 0
   alertLevel: 0
   target: {fileID: 0}
+  droneController: {fileID: 0}
 --- !u!136 &912101850410216797
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -449,7 +462,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6574202
+  m_Radius: 1
   m_Height: 2.496681
   m_Direction: 1
   m_Center: {x: 0.022837419, y: 0.74833995, z: 0}
