@@ -2896,6 +2896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba01da7cce2a40648f32b4701412fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  audioSource: {fileID: 155112697143679154}
+  defaultDeathClip: {fileID: 8300000, guid: 16a2595770a5ff443b8d04bb62b6c5eb, type: 3}
 --- !u!114 &8532823589200727835
 MonoBehaviour:
   m_ObjectHideFlags: 0

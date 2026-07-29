@@ -3,16 +3,29 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public bool IsDead { get; private set; }
-    private Rigidbody rb;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip defaultDeathClip; // Gasp / Electrified sound
+
+    private Rigidbody rb;
     private Animator animator;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>(); // DEBUG
+
+        // Automatically cache AudioSource if not manually assigned in Inspector
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
+    /// <summary>
+    /// Call this to kill the player. Plays default death sound and animation.
+    /// </summary>
     public void Die()
     {
         if (IsDead)
@@ -26,9 +39,25 @@ public class PlayerHealth : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
 
-        animator.SetTrigger("Die");
+        // Trigger Audio
+        PlayDeathSound();
+
+        // Play Death Animation
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+        }
+
         Debug.Log("Player died!");
         Invoke(nameof(HandleDeath), 3f);
+    }
+
+    private void PlayDeathSound()
+    {
+        if (audioSource != null && defaultDeathClip != null)
+        {
+            audioSource.PlayOneShot(defaultDeathClip);
+        }
     }
 
     private void HandleDeath()
@@ -40,8 +69,10 @@ public class PlayerHealth : MonoBehaviour
 
         IsDead = false;
 
-        animator.ResetTrigger("Die");
-        animator.Play("Blend Tree");
+        if (animator != null)
+        {
+            animator.ResetTrigger("Die");
+            animator.Play("Blend Tree");
+        }
     }
-
 }
