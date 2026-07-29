@@ -114,9 +114,13 @@ public class ArsenalRotation : MonoBehaviour
 
                 if (Mathf.Abs(signedAngle) < fovAngle / 2)
                 {
-                    playerSpotted = true;
-                    target = playerTarget;
-                    rotateTimer = 0f;
+                    bool isSneaking = c.TryGetComponent(out PlayerController playerController) && playerController.IsSneaking;
+                    if (!isSneaking)
+                    {
+                        playerSpotted = true;
+                        target = c.transform;
+                        rotateTimer = 0f;
+                    }
                 }
                 break;
             }
