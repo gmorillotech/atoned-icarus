@@ -141,9 +141,10 @@ GameObject:
   - component: {fileID: 3583366159093036854}
   - component: {fileID: 743873444403850143}
   - component: {fileID: 208982174757897451}
+  - component: {fileID: 7802162062933900236}
   m_Layer: 0
   m_Name: trashcan_02b_open
-  m_TagString: Untagged
+  m_TagString: Lure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -273,3 +274,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SignalToggle
   signalActive: 0
+--- !u!114 &7802162062933900236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975460765496759698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df44ba4b9c18c41ecbc78f184704cf0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LureInteractable
+  activeDuration: 3
+  audioSource: {fileID: 0}
+  interactionPromptUI: {fileID: 0}
