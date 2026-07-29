@@ -14,6 +14,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("Taser Config")]
     [SerializeField] private float taserCooldown = 6f;
     [SerializeField] private Sprite taserIcon;
+    [SerializeField] private AudioSource taserAudioSource; // <-- ADD THIS
     private float cooldownTimer = 0f;
     private Taser equippedTaser;
     [SerializeField] private GameObject heldTaser;
@@ -95,6 +96,12 @@ public class PlayerInventory : MonoBehaviour
                         if (successfulHit)
                         {
                             cooldownTimer = taserCooldown;
+
+                            // PLAY TASER FIRING AUDIO
+                            if (taserAudioSource != null)
+                            {
+                                taserAudioSource.Play();
+                            }
 
                             if (HUDController.Instance != null)
                             {
