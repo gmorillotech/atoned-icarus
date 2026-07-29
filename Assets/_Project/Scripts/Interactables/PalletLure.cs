@@ -23,15 +23,10 @@ public class PalletLure : MonoBehaviour
 
         signalToggle = GetComponentInChildren<SignalToggle>();
 
-        if (signalToggle == null)
-        {
-            Debug.LogWarning("No SignalToggle found on pallet: " + gameObject.name);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Pallet triggered by: " + other.name);
         
         if (!other.CompareTag("Player"))
             return;
@@ -43,11 +38,6 @@ public class PalletLure : MonoBehaviour
         if (signalToggle != null)
         {
             signalToggle.signalActive = true;
-            Debug.Log("SignalToggle activated on: " + signalToggle.gameObject.name);
-        }
-        else
-        {
-            Debug.LogWarning("SignalToggle is NULL on: " + gameObject.name);
         }
     }
 
@@ -83,7 +73,7 @@ public class PalletLure : MonoBehaviour
         {
             if (!audioSource.isPlaying)
             {
-                audioSource.pitch = 1.1f;
+                audioSource.time = audioSource.clip.length * 0.4f;
                 audioSource.Play();
             }
         }
