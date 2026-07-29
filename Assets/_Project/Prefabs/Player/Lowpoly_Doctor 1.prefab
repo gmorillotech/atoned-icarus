@@ -2881,6 +2881,7 @@ MonoBehaviour:
   keycardSprite: {fileID: 21300000, guid: a3a6cbbd733b86a4a997f392628200fb, type: 3}
   taserCooldown: 6
   taserIcon: {fileID: 21300000, guid: 65b74a0012a11724a870ed2af799587b, type: 3}
+  taserAudioSource: {fileID: 155112697143679154}
   heldTaser: {fileID: 4330281170947635313}
 --- !u!114 &-2647714862044366978
 MonoBehaviour:
@@ -2924,9 +2925,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: bec65274311aa5f4d97534392e70be60, type: 3}
+  m_Resource: {fileID: 8300000, guid: 296c1e31219d5934184255520c4f34ee, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.397
+  m_Volume: 1
   m_Pitch: 2.39
   Loop: 0
   Mute: 0
