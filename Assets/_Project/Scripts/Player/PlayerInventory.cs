@@ -18,6 +18,7 @@ public class PlayerInventory : MonoBehaviour
     private float cooldownTimer = 0f;
     private Taser equippedTaser;
     [SerializeField] private GameObject heldTaser;
+    [SerializeField] private Animator playerAnimator;
 
     private void Start()
     {
@@ -95,6 +96,11 @@ public class PlayerInventory : MonoBehaviour
 
                         if (successfulHit)
                         {
+                            if (playerAnimator != null)
+                            {
+                                playerAnimator.SetTrigger("ShootTaser");
+                            }
+                            
                             cooldownTimer = taserCooldown;
 
                             // PLAY TASER FIRING AUDIO
