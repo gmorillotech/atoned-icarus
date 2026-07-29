@@ -27,12 +27,19 @@ public class ArsenalScript : MonoBehaviour
     [Range(0, 100)] public float alertLevel; //0 idle, 100 attack
     public Transform target;
 
+    [SerializeField] private DroneController droneController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //robotType = robotType.Drone;
         alertStage = AlertStage.Idle;
         alertLevel = 0;
+
+        if (droneController == null)
+        {
+            droneController = GetComponent<DroneController>();
+        }
     }
 
     // Update is called once per frame
@@ -64,7 +71,8 @@ public class ArsenalScript : MonoBehaviour
                     //making the drone attack
                     playerSpotted = true;
                     //killing the player
-                    if (c.TryGetComponent(out PlayerHealth playerScript))
+                    if ((droneController == null || !droneController.stunned) &&
+                        c.TryGetComponent(out PlayerHealth playerScript))
                     {
                         playerScript.Die();
                     }
