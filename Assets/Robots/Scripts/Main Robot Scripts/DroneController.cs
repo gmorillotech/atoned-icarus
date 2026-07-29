@@ -55,6 +55,7 @@ public class DroneController : MonoBehaviour
             //if in the middle of being stunned
             timer = 0f;
             stop = false;
+            stunned = false;
             agent.speed = 3f;
             foundPlayer = false;
         }
