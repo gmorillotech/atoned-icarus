@@ -6,6 +6,11 @@ public class CardReader : MonoBehaviour
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private KeypadInteractionDisplay keypadDisplay;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource cardReaderAudio;
+    [SerializeField] private AudioClip accessGrantedSound;
+    [SerializeField] private AudioClip accessDeniedSound;
+
     private bool playerNearby;
     private bool isUnlocked;
 
@@ -15,6 +20,12 @@ public class CardReader : MonoBehaviour
         if (keypadDisplay == null)
         {
             keypadDisplay = GetComponent<KeypadInteractionDisplay>();
+        }
+
+        // Auto-find AudioSource if attached to the same object
+        if (cardReaderAudio == null)
+        {
+            cardReaderAudio = GetComponent<AudioSource>();
         }
     }
 
@@ -55,6 +66,9 @@ public class CardReader : MonoBehaviour
                 Debug.Log("Access granted!");
                 isUnlocked = true;
 
+                // Play Audio
+                PlaySound(accessGrantedSound);
+
                 if (keypadDisplay != null)
                 {
                     keypadDisplay.HidePrompt();
@@ -72,6 +86,10 @@ public class CardReader : MonoBehaviour
             else
             {
                 Debug.Log("Access denied. Keycard required.");
+
+                // Play Audio
+                PlaySound(accessDeniedSound);
+
                 if (keypadDisplay != null)
                 {
                     keypadDisplay.ShowPrompt("Requires Card");
@@ -98,6 +116,21 @@ public class CardReader : MonoBehaviour
         else
         {
             keypadDisplay.ShowPrompt("Requires Card");
+        }
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (cardReaderAudio != null)
+        {
+            if (clip != null)
+            {
+                cardReaderAudio.PlayOneShot(clip);
+            }
+            else
+            {
+                cardReaderAudio.Play();
+            }
         }
     }
 }
