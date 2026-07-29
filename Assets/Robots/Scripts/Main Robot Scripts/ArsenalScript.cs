@@ -68,13 +68,17 @@ public class ArsenalScript : MonoBehaviour
 
                 if (Mathf.Abs(signedAngle) < fovAngle / 2)
                 {
-                    //making the drone attack
-                    playerSpotted = true;
-                    //killing the player
-                    if ((droneController == null || !droneController.stunned) &&
-                        c.TryGetComponent(out PlayerHealth playerScript))
+                    bool isSneaking = c.TryGetComponent(out PlayerController playerController) && playerController.IsSneaking;
+                    if (!isSneaking)
                     {
-                        playerScript.Die();
+                        //making the drone attack
+                        playerSpotted = true;
+                        //killing the player
+                        if ((droneController == null || !droneController.stunned) &&
+                            c.TryGetComponent(out PlayerHealth playerScript))
+                        {
+                            playerScript.Die();
+                        }
                     }
 
                 }

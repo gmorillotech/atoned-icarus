@@ -492,6 +492,7 @@ MonoBehaviour:
   alertStage: 0
   alertLevel: 0
   target: {fileID: 0}
+  droneController: {fileID: 0}
 --- !u!114 &4049487236449048104
 MonoBehaviour:
   m_ObjectHideFlags: 0
