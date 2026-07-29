@@ -2,17 +2,12 @@ using UnityEngine;
 
 public class PalletLure : MonoBehaviour
 {
-    [Header("Lure Settings")]
-    [SerializeField] private float activeDuration = 3f;
-
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
 
     private SignalToggle signalToggle;
     private Rigidbody playerRb;
     private bool playerInside;
-
-    private bool isActive;
 
     private void Start()
     {
@@ -21,8 +16,12 @@ public class PalletLure : MonoBehaviour
             audioSource = GetComponent<AudioSource>();
         }
 
-        signalToggle = GetComponentInChildren<SignalToggle>();
+        signalToggle = GetComponent<SignalToggle>();
 
+        if (signalToggle == null)
+        {
+            Debug.LogWarning("No SignalToggle found on " + gameObject.name);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,6 +64,9 @@ public class PalletLure : MonoBehaviour
     private void Update()
     {
         if (!playerInside || playerRb == null)
+            return;
+
+        if (audioSource == null || audioSource.clip == null)
             return;
 
         float speed = playerRb.linearVelocity.magnitude;
