@@ -14674,6 +14674,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7589554627468781373, guid: c39def4db06996d41a336bf88b32bc5c, type: 3}
   m_PrefabInstance: {fileID: 724698669872275720}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &889336747 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 155112697143679154, guid: c39def4db06996d41a336bf88b32bc5c, type: 3}
+  m_PrefabInstance: {fileID: 724698669872275720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &896386614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31764,6 +31769,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2647714862044366978, guid: c39def4db06996d41a336bf88b32bc5c, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 889336747}
+    - target: {fileID: -2647714862044366978, guid: c39def4db06996d41a336bf88b32bc5c, type: 3}
+      propertyPath: defaultDeathClip
+      value: 
+      objectReference: {fileID: 8300000, guid: af7815a342929df4ea1a04fa4d6de3f5, type: 3}
+    - target: {fileID: 155112697143679154, guid: c39def4db06996d41a336bf88b32bc5c, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1472346469315661881, guid: c39def4db06996d41a336bf88b32bc5c, type: 3}
       propertyPath: taserIcon
       value: 
