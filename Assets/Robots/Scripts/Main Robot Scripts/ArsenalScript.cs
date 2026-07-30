@@ -69,7 +69,10 @@ public class ArsenalScript : MonoBehaviour
                 if (Mathf.Abs(signedAngle) < fovAngle / 2)
                 {
                     bool isSneaking = c.TryGetComponent(out PlayerController playerController) && playerController.IsSneaking;
-                    if (!isSneaking)
+
+                    bool shouldIgnorePlayer = robotType == RobotType.Arsenal && isSneaking;
+
+                    if (!shouldIgnorePlayer)
                     {
                         //making the drone attack
                         playerSpotted = true;
