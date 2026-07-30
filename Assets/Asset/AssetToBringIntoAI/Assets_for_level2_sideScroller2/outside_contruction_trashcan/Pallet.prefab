@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SignalToggle
   signalActive: 0
---- !u!135 &6621671164693863723
-SphereCollider:
+--- !u!65 &6621671164693863723
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -258,5 +258,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5682086
-  m_Center: {x: 0.054924726, y: -0.028083205, z: 0}
+  m_Size: {x: 1.3, y: 0.5, z: 1.3}
+  m_Center: {x: 0.054924726, y: 0.13, z: 0}
