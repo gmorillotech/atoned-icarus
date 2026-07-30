@@ -48,11 +48,9 @@ No additional configuration is needed. The build was compiled for Windows (x86_6
 - **Taser can stun two drones simultaneously** if they are close together, rather than affecting only the intended target.
 - **Some tight spaces allow the player to slip past a drone without using the taser** (e.g., near the cubicles in Level 1).
 - **Side-scroller slide animation has visual glitching**, particularly at beam junctions.
-- **Arsenal turret detection radius may be too small** in some areas of Level 2 — after a distraction ends, the turret does not always resume searching for the player even at close range, and the player can pass close to a wall without being detected.
 - **No in-game indication that Arsenal turrets are immune to the taser.** Players may attempt to taser them and become confused when it has no visible effect.
-- **A body prop on the pallets in Level 2 blocks the Arsenal turret's laser line of sight**, which may unintentionally shield the player.
 - **Limited player wayfinding.** It is not always clear where the player needs to go next (e.g., locating the elevator shaft entrance).
-- **Level 3 interactables do not have the highlight/glow indicator** that other levels' interactables use.
+- **Taser Recharge Bar on Level 3.** The taser recharge bar disappeared on level 3
 
 ## Third-Party Assets
 
