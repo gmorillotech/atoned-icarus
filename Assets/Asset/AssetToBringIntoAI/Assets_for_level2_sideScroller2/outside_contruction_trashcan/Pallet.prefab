@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116134a9dabae46fb8db06a31c0bd297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PalletLure
-  activeDuration: 3
   audioSource: {fileID: 5215203255213970856}
 --- !u!82 &5215203255213970856
 AudioSource:
