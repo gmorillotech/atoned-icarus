@@ -39,6 +39,11 @@ public class CutsceneManager : MonoBehaviour
 
     public void StartGameSequence()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopMusic();
+        }
+
         if (mainMenuUI != null)
         {
             mainMenuUI.SetActive(false);
