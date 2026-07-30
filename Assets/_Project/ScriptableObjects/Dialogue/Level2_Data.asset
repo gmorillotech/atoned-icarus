@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32014b9f809cef4dad37fbacbb2ac7c, type: 3}
   m_Name: Level2_Data
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  levelName: Level2(Military_ShootingRange_Room)
   speakerName: Icarus
   tutorialMessage: "You are an irrelevant variable in my algorithm. Attempting to
     stop me is asinine. You organics consume resources I need to function, making
@@ -20,5 +19,6 @@ MonoBehaviour:
     I need to gun humanity down\u2014starting with you."
   speakerPortrait: {fileID: 0}
   dialogueAudioClip: {fileID: 8300000, guid: a9097a88abef24040b06671d51fd3978, type: 3}
-  levelObjective: Distract armed military robots using electronic noise sources (radios/TVs)
-    to move past them safely and reach the lower water complex.
+  displayDuration: 0
+  levelObjective: Trigger noise sources to divert the audio sensors of the military
+    units, then sneak to slip past them and reach the lower water complex.
