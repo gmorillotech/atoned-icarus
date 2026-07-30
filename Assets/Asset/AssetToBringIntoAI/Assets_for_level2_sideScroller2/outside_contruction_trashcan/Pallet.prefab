@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6309270519795070525}
   - component: {fileID: 5215203255213970856}
   - component: {fileID: 3521519661297662114}
+  - component: {fileID: 6621671164693863723}
   m_Layer: 0
   m_Name: Pallet
   m_TagString: Lure
@@ -238,3 +239,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SignalToggle
   signalActive: 0
+--- !u!135 &6621671164693863723
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2682835197600776635}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5682086
+  m_Center: {x: 0.054924726, y: -0.028083205, z: 0}
